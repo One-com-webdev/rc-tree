@@ -354,7 +354,7 @@ class TreeNode extends React.Component {
     };
 
     return (
-      <li {...liProps} ref="li"
+      <li {...liProps} ref="li" id={props.id}
         className={classNames(props.className, disabledCls, dragOverCls, filterCls) }
       >
         <div className="rc-tree-item-wrap">
