@@ -12,6 +12,9 @@ const ieOrEdge = /.*(IE|Edge).+/.test(browserUa);
 const defaultTitle = '---';
 
 class TreeNode extends React.Component {
+
+  selectionTagOffsetUpdate = false;
+
   constructor(props) {
     super(props);
     [
@@ -32,7 +35,16 @@ class TreeNode extends React.Component {
     this.state = {
       dataLoading: false,
       dragNodeHighlight: false,
+      selectionTagOffset: null,
+      selectionTagOffsetUpdating: false
     };
+  }
+
+  _updateSelectionTagOffset() {
+    setTimeout(() => this.setState({selectionTagOffset: {
+      left: this.refs.li.offsetLeft,
+      top: this.refs.li.offsetTop
+    }}), 0);
   }
 
   componentDidMount() {
@@ -40,7 +52,23 @@ class TreeNode extends React.Component {
       this.props.root._treeNodeInstances = [];
     }
     this.props.root._treeNodeInstances.push(this);
+
+    if (this.props.selectionTag) {
+      this._updateSelectionTagOffset();
+    }
   }
+
+  componentDidUpdate() {
+    if (this.props.selectionTag) {
+      if (!this.selectionTagOffsetUpdate) {
+        this.selectionTagOffsetUpdate = true;
+        this._updateSelectionTagOffset();
+      } else {
+        this.selectionTagOffsetUpdate = false;
+      }
+    }
+  }
+
   // shouldComponentUpdate(nextProps) {
   //   if (!nextProps.expanded) {
   //     return false;
@@ -357,6 +385,10 @@ class TreeNode extends React.Component {
       <li {...liProps} ref="li"
         className={classNames(props.className, disabledCls, dragOverCls, filterCls) }
       >
+        {props.selectionTag
+            ? <props.selectionTag offset={this.state.selectionTagOffset} />
+            : null
+        }
         <div className="rc-tree-item-wrap">
           {canRenderSwitcher ? this.renderSwitcher(props, expandedState) : noopSwitcher()}
           {props.checkable ? this.renderCheckbox(props) : null}
