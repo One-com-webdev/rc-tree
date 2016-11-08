@@ -35,21 +35,20 @@ class TreeNode extends React.Component {
     };
   }
 
-  _getLeftShift() {
-    const {leftShift: shift, level} = this.props;
+  _getLeftShiftStyle() {
+    const {leftShift: shift, level, leftShiftProp = 'margin'} = this.props;
+    let shiftValue = 0;
 
-    // default shift
-    if (!shift) return 0;
+    if (shift) {
+      if (!Array.isArray(shift)) shiftValue = shift * level;
+      else {
+        const defaultShift = shift[0];
+        for (let i = 1; i <= level; i++)
+          shiftValue += (shift[i] || defaultShift);
+      }
+    }
 
-    // constant shift
-    else if (!Array.isArray(shift)) return shift * level;
-
-    // custom shift distribution
-    const defaultShift = shift[0];
-    let levelShift = 0;
-    for (let i = 1; i <= level; i++) levelShift += (shift[i] || defaultShift);
-
-    return levelShift;
+    return { [leftShiftProp + 'Left']: shiftValue };
   }
 
   componentDidMount() {
@@ -377,7 +376,7 @@ class TreeNode extends React.Component {
         {props.selectionTag ? <props.selectionTag /> : null}
         <div
             className={classNames('rc-tree-item-wrap', {['rc-tree-item-wrap-selected']: props.selected})}
-            style={{paddingLeft: this._getLeftShift()}}
+            style={this._getLeftShiftStyle()}
         >
           {canRenderSwitcher ? this.renderSwitcher(props, expandedState) : noopSwitcher()}
           {props.checkable ? this.renderCheckbox(props) : null}

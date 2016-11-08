@@ -479,7 +479,8 @@ class Tree extends React.Component {
       openTransitionName: this.getOpenTransitionName(),
       openAnimation: props.openAnimation,
       filterTreeNode: this.filterTreeNode.bind(this),
-      leftShift: this.props.itemLeftShift
+      leftShift: this.props.itemLeftShift,
+      leftShiftProp: this.props.itemLeftShiftProp
     };
     if (props.checkable) {
       cloneProps.checkable = props.checkable;
