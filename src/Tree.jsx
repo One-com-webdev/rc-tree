@@ -453,11 +453,14 @@ class Tree extends React.Component {
       selectable = child.props.selectable;
     }
 
+    const levelInt = ((level + '').match(/\-/g) || []).length;
+
     const cloneProps = {
       ref: `treeNode-${key}`,
       root: this,
       eventKey: key,
       pos,
+      level: levelInt,
       selectable,
       loadData: props.loadData,
       onMouseEnter: props.onMouseEnter,
@@ -476,6 +479,7 @@ class Tree extends React.Component {
       openTransitionName: this.getOpenTransitionName(),
       openAnimation: props.openAnimation,
       filterTreeNode: this.filterTreeNode.bind(this),
+      leftShift: this.props.itemLeftShift
     };
     if (props.checkable) {
       cloneProps.checkable = props.checkable;
