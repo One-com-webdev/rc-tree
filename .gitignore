@@ -24,3 +24,6 @@ dist
 *.css
 build
 lib
+/coverage
+yarn.lock
+es/

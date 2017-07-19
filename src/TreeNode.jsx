@@ -1,8 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import assign from 'object-assign';
 import classNames from 'classnames';
 import Animate from 'rc-animate';
 import { browser } from './util';
+import toArray from 'rc-util/lib/Children/toArray';
 
 const browserUa = typeof window !== 'undefined' ? browser(window.navigator) : '';
 const ieOrEdge = /.*(IE|Edge).+/.test(browserUa);
@@ -14,21 +16,7 @@ const defaultTitle = '---';
 class TreeNode extends React.Component {
   constructor(props) {
     super(props);
-    [
-      'onExpand',
-      'onCheck',
-      'onContextMenu',
-      'onMouseEnter',
-      'onMouseLeave',
-      'onDragStart',
-      'onDragEnter',
-      'onDragOver',
-      'onDragLeave',
-      'onDrop',
-      'onDragEnd',
-    ].forEach((m) => {
-      this[m] = this[m].bind(this);
-    });
+
     this.state = {
       dataLoading: false,
       dragNodeHighlight: false,
@@ -64,7 +52,7 @@ class TreeNode extends React.Component {
   //   return true;
   // }
 
-  onCheck() {
+  onCheck = () => {
     this.props.root.onCheck(this);
   }
 
@@ -72,22 +60,22 @@ class TreeNode extends React.Component {
     this.props.root.onSelect(this);
   }
 
-  onMouseEnter(e) {
+  onMouseEnter = (e) => {
     e.preventDefault();
     this.props.root.onMouseEnter(e, this);
   }
 
-  onMouseLeave(e) {
+  onMouseLeave = (e) => {
     e.preventDefault();
     this.props.root.onMouseLeave(e, this);
   }
 
-  onContextMenu(e) {
+  onContextMenu = (e) => {
     e.preventDefault();
     this.props.root.onContextMenu(e, this);
   }
 
-  onDragStart(e) {
+  onDragStart = (e) => {
     // console.log('dragstart', this.props.eventKey, e);
     // e.preventDefault();
     e.stopPropagation();
@@ -99,20 +87,18 @@ class TreeNode extends React.Component {
       // ie throw error
       // firefox-need-it
       e.dataTransfer.setData('text/plain', '');
-    } finally {
+    } catch (error) {
       // empty
     }
   }
 
-  onDragEnter(e) {
-    // console.log('onDragEnter', this.props.eventKey);
+  onDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
     this.props.root.onDragEnter(e, this);
   }
 
-  onDragOver(e) {
-    // console.log('onDragOver', this.props.eventKey);
+  onDragOver = (e) => {
     // todo disabled
     e.preventDefault();
     e.stopPropagation();
@@ -120,14 +106,12 @@ class TreeNode extends React.Component {
     return false;
   }
 
-  onDragLeave(e) {
-    // console.log('onDragLeave', this.props.eventKey);
+  onDragLeave = (e) => {
     e.stopPropagation();
     this.props.root.onDragLeave(e, this);
   }
 
-  onDrop(e) {
-    // console.log('onDrop', this.props.eventKey);
+  onDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
     this.setState({
@@ -136,8 +120,7 @@ class TreeNode extends React.Component {
     this.props.root.onDrop(e, this);
   }
 
-  onDragEnd(e) {
-    // console.log('onDragEnd', this.props.eventKey);
+  onDragEnd = (e) => {
     e.stopPropagation();
     this.setState({
       dragNodeHighlight: false,
@@ -145,7 +128,7 @@ class TreeNode extends React.Component {
     this.props.root.onDragEnd(e, this);
   }
 
-  onExpand() {
+  onExpand = () => {
     const callbackPromise = this.props.root.onExpand(this);
     if (callbackPromise && typeof callbackPromise === 'object') {
       const setLoading = (dataLoading) => {
@@ -217,14 +200,12 @@ class TreeNode extends React.Component {
     if (!renderFirst && props.expanded) {
       transitionAppear = false;
     }
-    const children = props.children;
+    const children = props.children ? toArray(props.children) : props.children;
     let newChildren = children;
     if (children &&
-      (children.type === TreeNode ||
-      Array.isArray(children) &&
-      children.every((item) => {
-        return item.type === TreeNode;
-      }))) {
+      (Array.isArray(children) &&
+        children.every((item) => item.type && item.type.isTreeNode) ||
+        (children.type && children.type.isTreeNode))) {
       const cls = {
         [`${props.prefixCls}-child-tree`]: true,
         [`${props.prefixCls}-child-tree-open`]: props.expanded,
@@ -262,12 +243,7 @@ class TreeNode extends React.Component {
     const props = this.props;
     const prefixCls = props.prefixCls;
     const expandedState = props.expanded ? 'open' : 'close';
-
-    const iconEleCls = {
-      [`${prefixCls}-iconEle`]: true,
-      [`${prefixCls}-icon_loading`]: this.state.dataLoading,
-      [`${prefixCls}-icon__${expandedState}`]: true,
-    };
+    let iconState = expandedState;
 
     let canRenderSwitcher = true;
     const content = props.title;
@@ -277,6 +253,7 @@ class TreeNode extends React.Component {
       newChildren = null;
       if (!props.loadData || props.isLeaf) {
         canRenderSwitcher = false;
+        iconState = 'docu';
       }
     }
     // For performance, does't render children into dom when `!props.expanded` (move to Animate)
@@ -284,12 +261,19 @@ class TreeNode extends React.Component {
     //   newChildren = null;
     // }
 
+    const iconEleCls = {
+      [`${prefixCls}-iconEle`]: true,
+      [`${prefixCls}-icon_loading`]: this.state.dataLoading,
+      [`${prefixCls}-icon__${iconState}`]: true,
+    };
+
     const selectHandle = () => {
       const icon = (props.showIcon || props.loadData && this.state.dataLoading) ?
         <span className={classNames(iconEleCls)}></span> : null;
       const title = <span className={`${prefixCls}-title`}>{content}</span>;
+      const wrap = `${prefixCls}-node-content-wrapper`;
       const domProps = {
-        className: `${prefixCls}-node-content-wrapper`,
+        className: `${wrap} ${wrap}-${iconState === expandedState ? iconState : 'normal'}`,
       };
       if (!props.disabled) {
         if (props.selected || !props._dropTrigger && this.state.dragNodeHighlight) {
@@ -326,9 +310,9 @@ class TreeNode extends React.Component {
         }
       }
       return (
-        <a ref="selectHandle" title={typeof content === 'string' ? content : ''} {...domProps}>
+        <span ref="selectHandle" title={typeof content === 'string' ? content : ''} {...domProps}>
           {icon}{title}
-        </a>
+        </span>
       );
     };
 
