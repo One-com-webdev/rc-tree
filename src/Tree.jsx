@@ -140,6 +140,7 @@ class Tree extends React.Component {
       dragNode: this.dragNode,
       dragNodesKeys: [...this.dragNodesKeys],
       dropPosition: this.dropPosition + Number(posArr[posArr.length - 1]),
+      dropEdge: this.dropPosition
     };
     if (this.dropPosition !== 0) {
       res.dropToGap = true;
