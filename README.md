@@ -127,6 +127,7 @@ To test changes from `wbtgen` project:
 1. `cd` to `<wbtgen>`
 1. `npm run install <path-to-rc-tree-one.com>`
 1. restart wbtgen server: `./server/bin/oneweb-server --port <port> --single`
+
 Iterate over 2-7 to make changes again.
 
 ## Test Case
