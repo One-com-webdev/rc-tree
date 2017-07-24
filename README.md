@@ -119,6 +119,16 @@ npm start
 - `node_modules/.bin/rc-tools run compile`: compiles actual tree `lib`
 - `npm version patch && npm run pub`: pumps version patch and publishes to npm
 
+To test changes from `wbtgen` project:
+1. git clone this repo onto your localhost
+1. cd to `<path-to-rc-tree-one.com>`
+1. make some changes
+1. compile (see above)
+1. `cd` to `<wbtgen>`
+1. `npm run install <path-to-rc-tree-one.com>`
+1. restart wbtgen server: `./server/bin/oneweb-server --port <port> --single`
+Iterate over 2-7 to make changes again.
+
 ## Test Case
 
 http://localhost:8018/tests/runner.html?coverage
