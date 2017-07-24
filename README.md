@@ -114,6 +114,10 @@ to avoid double computing. But, this bring some restrictions,
 npm install
 npm start
 ```
+### Compile and publish
+- `npm run build`: builds examples pages
+- `node_modules/.bin/rc-tools run compile`: compiles actual tree `lib`
+- `npm version patch && npm run pub`: pumps version patch and publishes to npm
 
 ## Test Case
 
