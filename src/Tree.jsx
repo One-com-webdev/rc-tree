@@ -292,23 +292,6 @@ class Tree extends React.Component {
   }
 
   onContextMenu(e, treeNode) {
-    const selectedKeys = [...this.state.selectedKeys];
-    const eventKey = treeNode.props.eventKey;
-    if (this.contextmenuKeys.indexOf(eventKey) === -1) {
-      this.contextmenuKeys.push(eventKey);
-    }
-    this.contextmenuKeys.forEach((key) => {
-      const index = selectedKeys.indexOf(key);
-      if (index !== -1) {
-        selectedKeys.splice(index, 1);
-      }
-    });
-    if (selectedKeys.indexOf(eventKey) === -1) {
-      selectedKeys.push(eventKey);
-    }
-    this.setState({
-      selectedKeys,
-    });
     this.props.onRightClick({ event: e, node: treeNode });
   }
 
