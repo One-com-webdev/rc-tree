@@ -43,7 +43,7 @@ const Demo = React.createClass({
       checkedKeys,
     });
   },
-  onCheckStrictly(checkedKeys, /* extra*/) {
+  onCheckStrictly(checkedKeys) {
     console.log(arguments);
     // const { checkedNodesPositions } = extra;
     // const pps = filterParentPosition(checkedNodesPositions.map(i => i.pos));

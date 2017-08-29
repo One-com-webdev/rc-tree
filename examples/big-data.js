@@ -36,7 +36,7 @@ const Demo = React.createClass({
       checkedKeys,
     });
   },
-  onCheckStrictly(checkedKeys1, /* extra*/) {
+  onCheckStrictly(checkedKeys1) {
     console.log(arguments);
     this.setState({
       checkedKeys1,
