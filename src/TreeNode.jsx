@@ -398,6 +398,12 @@ TreeNode.propTypes = {
   isLeaf: PropTypes.bool,
   root: PropTypes.object,
   onSelect: PropTypes.func,
+  leftShift: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
+  level: PropTypes.number,
+  leftShiftProp: PropTypes.string,
 };
 
 TreeNode.defaultProps = {

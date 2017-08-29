@@ -140,7 +140,7 @@ class Tree extends React.Component {
       dragNode: this.dragNode,
       dragNodesKeys: [...this.dragNodesKeys],
       dropPosition: this.dropPosition + Number(posArr[posArr.length - 1]),
-      dropEdge: this.dropPosition
+      dropEdge: this.dropPosition,
     };
     if (this.dropPosition !== 0) {
       res.dropToGap = true;
@@ -464,7 +464,7 @@ class Tree extends React.Component {
       openAnimation: props.openAnimation,
       filterTreeNode: this.filterTreeNode.bind(this),
       leftShift: this.props.itemLeftShift,
-      leftShiftProp: this.props.itemLeftShiftProp
+      leftShiftProp: this.props.itemLeftShiftProp,
     };
     if (props.checkable) {
       cloneProps.checkable = props.checkable;
@@ -595,6 +595,11 @@ Tree.propTypes = {
   filterTreeNode: PropTypes.func,
   openTransitionName: PropTypes.string,
   openAnimation: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  itemLeftShift: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
+  itemLeftShiftProp: PropTypes.string,
 };
 
 Tree.defaultProps = {
