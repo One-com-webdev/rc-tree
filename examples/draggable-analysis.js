@@ -5109,7 +5109,7 @@ webpackJsonp([6],[
 	  leftShift: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.arrayOf(_react.PropTypes.number)]),
 	  level: _react.PropTypes.number,
 	  leftShiftProp: _react.PropTypes.string,
-	  separator: _react.PropTypes.element
+	  separator: _react.PropTypes.func
 	};
 	
 	TreeNode.defaultProps = {
