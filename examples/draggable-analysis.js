@@ -1,8 +1,8 @@
-webpackJsonp([2],[
+webpackJsonp([6],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(259);
+	module.exports = __webpack_require__(327);
 
 
 /***/ }),
@@ -2047,240 +2047,7 @@ webpackJsonp([2],[
 /***/ }),
 /* 257 */,
 /* 258 */,
-/* 259 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"rc-tree/assets/index.less\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	
-	var _react = __webpack_require__(2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(38);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	var _rcTree = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"rc-tree\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	
-	var _rcTree2 = _interopRequireDefault(_rcTree);
-	
-	var _util = __webpack_require__(260);
-	
-	__webpack_require__(261);
-	
-	var _rcDialog = __webpack_require__(262);
-	
-	var _rcDialog2 = _interopRequireDefault(_rcDialog);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
-	var Demo = _react2.default.createClass({
-	  displayName: 'Demo',
-	
-	  propTypes: {
-	    multiple: _react.PropTypes.bool
-	  },
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      visible: false,
-	      multiple: true
-	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      // expandedKeys: getFilterExpandedKeys(gData, ['0-0-0-key']),
-	      expandedKeys: ['0-0-0-key'],
-	      autoExpandParent: true,
-	      // checkedKeys: ['0-0-0-0-key', '0-0-1-0-key', '0-1-0-0-key'],
-	      checkedKeys: ['0-0-0-key'],
-	      checkStrictlyKeys: { checked: ['0-0-1-key'], halfChecked: [] },
-	      selectedKeys: [],
-	      treeData: []
-	    };
-	  },
-	  onExpand: function onExpand(expandedKeys) {
-	    console.log('onExpand', arguments);
-	    // if not set autoExpandParent to false, if children expanded, parent can not collapse.
-	    // or, you can remove all expanded chilren keys.
-	    this.setState({
-	      expandedKeys: expandedKeys,
-	      autoExpandParent: false
-	    });
-	  },
-	  onCheck: function onCheck(checkedKeys) {
-	    this.setState({
-	      checkedKeys: checkedKeys
-	    });
-	  },
-	  onCheckStrictly: function onCheckStrictly(checkedKeys) {
-	    console.log(arguments);
-	    // const { checkedNodesPositions } = extra;
-	    // const pps = filterParentPosition(checkedNodesPositions.map(i => i.pos));
-	    // console.log(checkedNodesPositions.filter(i => pps.indexOf(i.pos) > -1).map(i => i.node.key));
-	    var cks = {
-	      checked: checkedKeys.checked || checkedKeys,
-	      halfChecked: ['0-0-' + parseInt(Math.random() * 3, 10) + '-key']
-	    };
-	    this.setState({
-	      // checkedKeys,
-	      checkStrictlyKeys: cks
-	      // checkStrictlyKeys: checkedKeys,
-	    });
-	  },
-	  onSelect: function onSelect(selectedKeys, info) {
-	    console.log('onSelect', selectedKeys, info);
-	    this.setState({
-	      selectedKeys: selectedKeys
-	    });
-	  },
-	  onRbSelect: function onRbSelect(selectedKeys, info) {
-	    var _selectedKeys = selectedKeys;
-	    if (info.selected) {
-	      _selectedKeys = (0, _util.getRadioSelectKeys)(_util.gData, selectedKeys, info.node.props.eventKey);
-	    }
-	    this.setState({
-	      selectedKeys: _selectedKeys
-	    });
-	  },
-	  onClose: function onClose() {
-	    this.setState({
-	      visible: false
-	    });
-	  },
-	  handleOk: function handleOk() {
-	    this.setState({
-	      visible: false
-	    });
-	  },
-	  showModal: function showModal() {
-	    var _this = this;
-	
-	    this.setState({
-	      expandedKeys: ['0-0-0-key', '0-0-1-key'],
-	      checkedKeys: ['0-0-0-key'],
-	      visible: true
-	    });
-	    // simulate Ajax
-	    setTimeout(function () {
-	      _this.setState({
-	        treeData: [].concat(_toConsumableArray(_util.gData))
-	      });
-	    }, 2000);
-	  },
-	  triggerChecked: function triggerChecked() {
-	    this.setState({
-	      checkedKeys: ['0-0-' + parseInt(Math.random() * 3, 10) + '-key']
-	    });
-	  },
-	  render: function render() {
-	    var loop = function loop(data) {
-	      return data.map(function (item) {
-	        if (item.children) {
-	          return _react2.default.createElement(
-	            _rcTree.TreeNode,
-	            {
-	              key: item.key, title: item.title,
-	              disableCheckbox: item.key === '0-0-0-key'
-	            },
-	            loop(item.children)
-	          );
-	        }
-	        return _react2.default.createElement(_rcTree.TreeNode, { key: item.key, title: item.title });
-	      });
-	    };
-	    // console.log(getRadioSelectKeys(gData, this.state.selectedKeys));
-	    return _react2.default.createElement(
-	      'div',
-	      { style: { padding: '0 20px' } },
-	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        'dialog'
-	      ),
-	      _react2.default.createElement(
-	        'button',
-	        { className: 'btn btn-primary', onClick: this.showModal },
-	        'show dialog'
-	      ),
-	      _react2.default.createElement(
-	        _rcDialog2.default,
-	        {
-	          title: 'TestDemo', visible: this.state.visible,
-	          onOk: this.handleOk, onClose: this.onClose
-	        },
-	        this.state.treeData.length ? _react2.default.createElement(
-	          _rcTree2.default,
-	          {
-	            checkable: true, className: 'dialog-tree',
-	            onExpand: this.onExpand, expandedKeys: this.state.expandedKeys,
-	            autoExpandParent: this.state.autoExpandParent,
-	            onCheck: this.onCheck, checkedKeys: this.state.checkedKeys
-	          },
-	          loop(this.state.treeData)
-	        ) : 'loading...'
-	      ),
-	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        'controlled'
-	      ),
-	      _react2.default.createElement(
-	        _rcTree2.default,
-	        {
-	          checkable: true,
-	          onExpand: this.onExpand, expandedKeys: this.state.expandedKeys,
-	          autoExpandParent: this.state.autoExpandParent,
-	          onCheck: this.onCheck, checkedKeys: this.state.checkedKeys,
-	          onSelect: this.onSelect, selectedKeys: this.state.selectedKeys
-	        },
-	        loop(_util.gData)
-	      ),
-	      _react2.default.createElement(
-	        'button',
-	        { onClick: this.triggerChecked },
-	        'trigger checked'
-	      ),
-	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        'checkStrictly'
-	      ),
-	      _react2.default.createElement(
-	        _rcTree2.default,
-	        {
-	          checkable: true, multiple: this.props.multiple, defaultExpandAll: true,
-	          onExpand: this.onExpand, expandedKeys: this.state.expandedKeys,
-	          onCheck: this.onCheckStrictly,
-	          checkedKeys: this.state.checkStrictlyKeys,
-	          checkStrictly: true
-	        },
-	        loop(_util.gData)
-	      ),
-	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        'radio\'s behavior select (in the same level)'
-	      ),
-	      _react2.default.createElement(
-	        _rcTree2.default,
-	        {
-	          multiple: true, defaultExpandAll: true,
-	          onSelect: this.onRbSelect,
-	          selectedKeys: (0, _util.getRadioSelectKeys)(_util.gData, this.state.selectedKeys)
-	        },
-	        loop(_util.gData)
-	      )
-	    );
-	  }
-	});
-	
-	_reactDom2.default.render(_react2.default.createElement(Demo, null), document.getElementById('__react-content'));
-
-/***/ }),
+/* 259 */,
 /* 260 */
 /***/ (function(module, exports) {
 
@@ -2491,96 +2258,8 @@ webpackJsonp([2],[
 	}
 
 /***/ }),
-/* 261 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 262 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _extends2 = __webpack_require__(263);
-	
-	var _extends3 = _interopRequireDefault(_extends2);
-	
-	var _react = __webpack_require__(2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _createReactClass = __webpack_require__(268);
-	
-	var _createReactClass2 = _interopRequireDefault(_createReactClass);
-	
-	var _Dialog = __webpack_require__(269);
-	
-	var _Dialog2 = _interopRequireDefault(_Dialog);
-	
-	var _getContainerRenderMixin = __webpack_require__(294);
-	
-	var _getContainerRenderMixin2 = _interopRequireDefault(_getContainerRenderMixin);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var DialogWrap = (0, _createReactClass2['default'])({
-	    displayName: 'DialogWrap',
-	    mixins: [(0, _getContainerRenderMixin2['default'])({
-	        isVisible: function isVisible(instance) {
-	            return instance.props.visible;
-	        },
-	
-	        autoDestroy: false,
-	        getComponent: function getComponent(instance, extra) {
-	            return _react2['default'].createElement(_Dialog2['default'], (0, _extends3['default'])({}, instance.props, extra, { key: "dialog" }));
-	        },
-	        getContainer: function getContainer(instance) {
-	            if (instance.props.getContainer) {
-	                return instance.props.getContainer();
-	            }
-	            var container = document.createElement('div');
-	            document.body.appendChild(container);
-	            return container;
-	        }
-	    })],
-	    getDefaultProps: function getDefaultProps() {
-	        return {
-	            visible: false
-	        };
-	    },
-	    shouldComponentUpdate: function shouldComponentUpdate(_ref) {
-	        var visible = _ref.visible;
-	
-	        return !!(this.props.visible || visible);
-	    },
-	    componentWillUnmount: function componentWillUnmount() {
-	        if (this.props.visible) {
-	            this.renderComponent({
-	                afterClose: this.removeContainer,
-	                onClose: function onClose() {},
-	
-	                visible: false
-	            });
-	        } else {
-	            this.removeContainer();
-	        }
-	    },
-	    getElement: function getElement(part) {
-	        return this._component.getElement(part);
-	    },
-	    render: function render() {
-	        return null;
-	    }
-	});
-	exports['default'] = DialogWrap;
-	module.exports = exports['default'];
-
-/***/ }),
+/* 261 */,
+/* 262 */,
 /* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2673,401 +2352,8 @@ webpackJsonp([2],[
 
 
 /***/ }),
-/* 268 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
-	
-	'use strict';
-	
-	var React = __webpack_require__(2);
-	var factory = __webpack_require__(36);
-	
-	if (typeof React === 'undefined') {
-	  throw Error(
-	    'create-react-class could not find the React object. If you are using script tags, ' +
-	      'make sure that React is being loaded before create-react-class.'
-	  );
-	}
-	
-	// Hack to grab NoopUpdateQueue from isomorphic React
-	var ReactNoopUpdateQueue = new React.Component().updater;
-	
-	module.exports = factory(
-	  React.Component,
-	  React.isValidElement,
-	  ReactNoopUpdateQueue
-	);
-
-
-/***/ }),
-/* 269 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _extends2 = __webpack_require__(263);
-	
-	var _extends3 = _interopRequireDefault(_extends2);
-	
-	var _classCallCheck2 = __webpack_require__(270);
-	
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-	
-	var _createClass2 = __webpack_require__(271);
-	
-	var _createClass3 = _interopRequireDefault(_createClass2);
-	
-	var _possibleConstructorReturn2 = __webpack_require__(275);
-	
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-	
-	var _inherits2 = __webpack_require__(276);
-	
-	var _inherits3 = _interopRequireDefault(_inherits2);
-	
-	var _react = __webpack_require__(2);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(38);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	var _KeyCode = __webpack_require__(284);
-	
-	var _KeyCode2 = _interopRequireDefault(_KeyCode);
-	
-	var _rcAnimate = __webpack_require__(285);
-	
-	var _rcAnimate2 = _interopRequireDefault(_rcAnimate);
-	
-	var _LazyRenderBox = __webpack_require__(292);
-	
-	var _LazyRenderBox2 = _interopRequireDefault(_LazyRenderBox);
-	
-	var _getScrollBarSize = __webpack_require__(293);
-	
-	var _getScrollBarSize2 = _interopRequireDefault(_getScrollBarSize);
-	
-	var _objectAssign = __webpack_require__(5);
-	
-	var _objectAssign2 = _interopRequireDefault(_objectAssign);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var uuid = 0;
-	var openCount = 0;
-	/* eslint react/no-is-mounted:0 */
-	function noop() {}
-	function getScroll(w, top) {
-	    var ret = w['page' + (top ? 'Y' : 'X') + 'Offset'];
-	    var method = 'scroll' + (top ? 'Top' : 'Left');
-	    if (typeof ret !== 'number') {
-	        var d = w.document;
-	        ret = d.documentElement[method];
-	        if (typeof ret !== 'number') {
-	            ret = d.body[method];
-	        }
-	    }
-	    return ret;
-	}
-	function setTransformOrigin(node, value) {
-	    var style = node.style;
-	    ['Webkit', 'Moz', 'Ms', 'ms'].forEach(function (prefix) {
-	        style[prefix + 'TransformOrigin'] = value;
-	    });
-	    style['transformOrigin'] = value;
-	}
-	function offset(el) {
-	    var rect = el.getBoundingClientRect();
-	    var pos = {
-	        left: rect.left,
-	        top: rect.top
-	    };
-	    var doc = el.ownerDocument;
-	    var w = doc.defaultView || doc.parentWindow;
-	    pos.left += getScroll(w);
-	    pos.top += getScroll(w, true);
-	    return pos;
-	}
-	
-	var Dialog = function (_React$Component) {
-	    (0, _inherits3['default'])(Dialog, _React$Component);
-	
-	    function Dialog() {
-	        (0, _classCallCheck3['default'])(this, Dialog);
-	
-	        var _this = (0, _possibleConstructorReturn3['default'])(this, (Dialog.__proto__ || Object.getPrototypeOf(Dialog)).apply(this, arguments));
-	
-	        _this.onAnimateLeave = function () {
-	            // need demo?
-	            // https://github.com/react-component/dialog/pull/28
-	            if (_this.refs.wrap) {
-	                _this.refs.wrap.style.display = 'none';
-	            }
-	            _this.inTransition = false;
-	            _this.removeScrollingEffect();
-	            _this.props.afterClose();
-	        };
-	        _this.onMaskClick = function (e) {
-	            // android trigger click on open (fastclick??)
-	            if (Date.now() - _this.openTime < 300) {
-	                return;
-	            }
-	            if (e.target === e.currentTarget) {
-	                _this.close(e);
-	            }
-	        };
-	        _this.onKeyDown = function (e) {
-	            var props = _this.props;
-	            if (props.keyboard && e.keyCode === _KeyCode2['default'].ESC) {
-	                _this.close(e);
-	            }
-	            // keep focus inside dialog
-	            if (props.visible) {
-	                if (e.keyCode === _KeyCode2['default'].TAB) {
-	                    var activeElement = document.activeElement;
-	                    var dialogRoot = _this.refs.wrap;
-	                    var sentinel = _this.refs.sentinel;
-	                    if (e.shiftKey) {
-	                        if (activeElement === dialogRoot) {
-	                            sentinel.focus();
-	                        }
-	                    } else if (activeElement === _this.refs.sentinel) {
-	                        dialogRoot.focus();
-	                    }
-	                }
-	            }
-	        };
-	        _this.getDialogElement = function () {
-	            var props = _this.props;
-	            var closable = props.closable;
-	            var prefixCls = props.prefixCls;
-	            var dest = {};
-	            if (props.width !== undefined) {
-	                dest.width = props.width;
-	            }
-	            if (props.height !== undefined) {
-	                dest.height = props.height;
-	            }
-	            var footer = void 0;
-	            if (props.footer) {
-	                footer = _react2['default'].createElement("div", { className: prefixCls + '-footer', ref: "footer" }, props.footer);
-	            }
-	            var header = void 0;
-	            if (props.title) {
-	                header = _react2['default'].createElement("div", { className: prefixCls + '-header', ref: "header" }, _react2['default'].createElement("div", { className: prefixCls + '-title', id: _this.titleId }, props.title));
-	            }
-	            var closer = void 0;
-	            if (closable) {
-	                closer = _react2['default'].createElement("button", { onClick: _this.close, "aria-label": "Close", className: prefixCls + '-close' }, _react2['default'].createElement("span", { className: prefixCls + '-close-x' }));
-	            }
-	            var style = (0, _objectAssign2['default'])({}, props.style, dest);
-	            var transitionName = _this.getTransitionName();
-	            var dialogElement = _react2['default'].createElement(_LazyRenderBox2['default'], { key: "dialog-element", role: "document", ref: "dialog", style: style, className: prefixCls + ' ' + (props.className || ''), visible: props.visible }, _react2['default'].createElement("div", { className: prefixCls + '-content' }, closer, header, _react2['default'].createElement("div", (0, _extends3['default'])({ className: prefixCls + '-body', style: props.bodyStyle, ref: "body" }, props.bodyProps), props.children), footer), _react2['default'].createElement("div", { tabIndex: 0, ref: "sentinel", style: { width: 0, height: 0, overflow: 'hidden' } }, "sentinel"));
-	            return _react2['default'].createElement(_rcAnimate2['default'], { key: "dialog", showProp: "visible", onLeave: _this.onAnimateLeave, transitionName: transitionName, component: "", transitionAppear: true }, dialogElement);
-	        };
-	        _this.getZIndexStyle = function () {
-	            var style = {};
-	            var props = _this.props;
-	            if (props.zIndex !== undefined) {
-	                style.zIndex = props.zIndex;
-	            }
-	            return style;
-	        };
-	        _this.getWrapStyle = function () {
-	            return (0, _objectAssign2['default'])({}, _this.getZIndexStyle(), _this.props.wrapStyle);
-	        };
-	        _this.getMaskStyle = function () {
-	            return (0, _objectAssign2['default'])({}, _this.getZIndexStyle(), _this.props.maskStyle);
-	        };
-	        _this.getMaskElement = function () {
-	            var props = _this.props;
-	            var maskElement = void 0;
-	            if (props.mask) {
-	                var maskTransition = _this.getMaskTransitionName();
-	                maskElement = _react2['default'].createElement(_LazyRenderBox2['default'], (0, _extends3['default'])({ style: _this.getMaskStyle(), key: "mask", className: props.prefixCls + '-mask', hiddenClassName: props.prefixCls + '-mask-hidden', visible: props.visible }, props.maskProps));
-	                if (maskTransition) {
-	                    maskElement = _react2['default'].createElement(_rcAnimate2['default'], { key: "mask", showProp: "visible", transitionAppear: true, component: "", transitionName: maskTransition }, maskElement);
-	                }
-	            }
-	            return maskElement;
-	        };
-	        _this.getMaskTransitionName = function () {
-	            var props = _this.props;
-	            var transitionName = props.maskTransitionName;
-	            var animation = props.maskAnimation;
-	            if (!transitionName && animation) {
-	                transitionName = props.prefixCls + '-' + animation;
-	            }
-	            return transitionName;
-	        };
-	        _this.getTransitionName = function () {
-	            var props = _this.props;
-	            var transitionName = props.transitionName;
-	            var animation = props.animation;
-	            if (!transitionName && animation) {
-	                transitionName = props.prefixCls + '-' + animation;
-	            }
-	            return transitionName;
-	        };
-	        _this.getElement = function (part) {
-	            return _this.refs[part];
-	        };
-	        _this.setScrollbar = function () {
-	            if (_this.bodyIsOverflowing && _this.scrollbarWidth !== undefined) {
-	                document.body.style.paddingRight = _this.scrollbarWidth + 'px';
-	            }
-	        };
-	        _this.addScrollingEffect = function () {
-	            openCount++;
-	            if (openCount !== 1) {
-	                return;
-	            }
-	            _this.checkScrollbar();
-	            _this.setScrollbar();
-	            document.body.style.overflow = 'hidden';
-	            // this.adjustDialog();
-	        };
-	        _this.removeScrollingEffect = function () {
-	            openCount--;
-	            if (openCount !== 0) {
-	                return;
-	            }
-	            document.body.style.overflow = '';
-	            _this.resetScrollbar();
-	            // this.resetAdjustments();
-	        };
-	        _this.close = function (e) {
-	            _this.props.onClose(e);
-	        };
-	        _this.checkScrollbar = function () {
-	            var fullWindowWidth = window.innerWidth;
-	            if (!fullWindowWidth) {
-	                var documentElementRect = document.documentElement.getBoundingClientRect();
-	                fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left);
-	            }
-	            _this.bodyIsOverflowing = document.body.clientWidth < fullWindowWidth;
-	            if (_this.bodyIsOverflowing) {
-	                _this.scrollbarWidth = (0, _getScrollBarSize2['default'])();
-	            }
-	        };
-	        _this.resetScrollbar = function () {
-	            document.body.style.paddingRight = '';
-	        };
-	        _this.adjustDialog = function () {
-	            if (_this.refs.wrap && _this.scrollbarWidth !== undefined) {
-	                var modalIsOverflowing = _this.refs.wrap.scrollHeight > document.documentElement.clientHeight;
-	                _this.refs.wrap.style.paddingLeft = (!_this.bodyIsOverflowing && modalIsOverflowing ? _this.scrollbarWidth : '') + 'px';
-	                _this.refs.wrap.style.paddingRight = (_this.bodyIsOverflowing && !modalIsOverflowing ? _this.scrollbarWidth : '') + 'px';
-	            }
-	        };
-	        _this.resetAdjustments = function () {
-	            if (_this.refs.wrap) {
-	                _this.refs.wrap.style.paddingLeft = _this.refs.wrap.style.paddingLeft = '';
-	            }
-	        };
-	        return _this;
-	    }
-	
-	    (0, _createClass3['default'])(Dialog, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            this.inTransition = false;
-	            this.titleId = 'rcDialogTitle' + uuid++;
-	        }
-	    }, {
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            this.componentDidUpdate({});
-	        }
-	    }, {
-	        key: 'componentDidUpdate',
-	        value: function componentDidUpdate(prevProps) {
-	            var props = this.props;
-	            var mousePosition = this.props.mousePosition;
-	            if (props.visible) {
-	                // first show
-	                if (!prevProps.visible) {
-	                    this.openTime = Date.now();
-	                    this.lastOutSideFocusNode = document.activeElement;
-	                    this.addScrollingEffect();
-	                    this.refs.wrap.focus();
-	                    var dialogNode = _reactDom2['default'].findDOMNode(this.refs.dialog);
-	                    if (mousePosition) {
-	                        var elOffset = offset(dialogNode);
-	                        setTransformOrigin(dialogNode, mousePosition.x - elOffset.left + 'px ' + (mousePosition.y - elOffset.top) + 'px');
-	                    } else {
-	                        setTransformOrigin(dialogNode, '');
-	                    }
-	                }
-	            } else if (prevProps.visible) {
-	                this.inTransition = true;
-	                if (props.mask && this.lastOutSideFocusNode) {
-	                    try {
-	                        this.lastOutSideFocusNode.focus();
-	                    } catch (e) {
-	                        this.lastOutSideFocusNode = null;
-	                    }
-	                    this.lastOutSideFocusNode = null;
-	                }
-	            }
-	        }
-	    }, {
-	        key: 'componentWillUnmount',
-	        value: function componentWillUnmount() {
-	            if (this.props.visible || this.inTransition) {
-	                this.removeScrollingEffect();
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var props = this.props;
-	            var prefixCls = props.prefixCls,
-	                maskClosable = props.maskClosable;
-	
-	            var style = this.getWrapStyle();
-	            // clear hide display
-	            // and only set display after async anim, not here for hide
-	            if (props.visible) {
-	                style.display = null;
-	            }
-	            return _react2['default'].createElement("div", null, this.getMaskElement(), _react2['default'].createElement("div", (0, _extends3['default'])({ tabIndex: -1, onKeyDown: this.onKeyDown, className: prefixCls + '-wrap ' + (props.wrapClassName || ''), ref: "wrap", onClick: maskClosable ? this.onMaskClick : undefined, role: "dialog", "aria-labelledby": props.title ? this.titleId : null, style: style }, props.wrapProps), this.getDialogElement()));
-	        }
-	    }]);
-	    return Dialog;
-	}(_react2['default'].Component);
-	
-	exports['default'] = Dialog;
-	
-	Dialog.defaultProps = {
-	    afterClose: noop,
-	    className: '',
-	    mask: true,
-	    visible: false,
-	    keyboard: true,
-	    closable: true,
-	    maskClosable: true,
-	    prefixCls: 'rc-dialog',
-	    onClose: noop
-	};
-	module.exports = exports['default'];
-
-/***/ }),
+/* 268 */,
+/* 269 */,
 /* 270 */
 /***/ (function(module, exports) {
 
@@ -3280,535 +2566,7 @@ webpackJsonp([2],[
 
 
 /***/ }),
-/* 284 */
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	/**
-	 * @ignore
-	 * some key-codes definition and utils from closure-library
-	 * @author yiminghe@gmail.com
-	 */
-	
-	var KeyCode = {
-	  /**
-	   * MAC_ENTER
-	   */
-	  MAC_ENTER: 3,
-	  /**
-	   * BACKSPACE
-	   */
-	  BACKSPACE: 8,
-	  /**
-	   * TAB
-	   */
-	  TAB: 9,
-	  /**
-	   * NUMLOCK on FF/Safari Mac
-	   */
-	  NUM_CENTER: 12, // NUMLOCK on FF/Safari Mac
-	  /**
-	   * ENTER
-	   */
-	  ENTER: 13,
-	  /**
-	   * SHIFT
-	   */
-	  SHIFT: 16,
-	  /**
-	   * CTRL
-	   */
-	  CTRL: 17,
-	  /**
-	   * ALT
-	   */
-	  ALT: 18,
-	  /**
-	   * PAUSE
-	   */
-	  PAUSE: 19,
-	  /**
-	   * CAPS_LOCK
-	   */
-	  CAPS_LOCK: 20,
-	  /**
-	   * ESC
-	   */
-	  ESC: 27,
-	  /**
-	   * SPACE
-	   */
-	  SPACE: 32,
-	  /**
-	   * PAGE_UP
-	   */
-	  PAGE_UP: 33, // also NUM_NORTH_EAST
-	  /**
-	   * PAGE_DOWN
-	   */
-	  PAGE_DOWN: 34, // also NUM_SOUTH_EAST
-	  /**
-	   * END
-	   */
-	  END: 35, // also NUM_SOUTH_WEST
-	  /**
-	   * HOME
-	   */
-	  HOME: 36, // also NUM_NORTH_WEST
-	  /**
-	   * LEFT
-	   */
-	  LEFT: 37, // also NUM_WEST
-	  /**
-	   * UP
-	   */
-	  UP: 38, // also NUM_NORTH
-	  /**
-	   * RIGHT
-	   */
-	  RIGHT: 39, // also NUM_EAST
-	  /**
-	   * DOWN
-	   */
-	  DOWN: 40, // also NUM_SOUTH
-	  /**
-	   * PRINT_SCREEN
-	   */
-	  PRINT_SCREEN: 44,
-	  /**
-	   * INSERT
-	   */
-	  INSERT: 45, // also NUM_INSERT
-	  /**
-	   * DELETE
-	   */
-	  DELETE: 46, // also NUM_DELETE
-	  /**
-	   * ZERO
-	   */
-	  ZERO: 48,
-	  /**
-	   * ONE
-	   */
-	  ONE: 49,
-	  /**
-	   * TWO
-	   */
-	  TWO: 50,
-	  /**
-	   * THREE
-	   */
-	  THREE: 51,
-	  /**
-	   * FOUR
-	   */
-	  FOUR: 52,
-	  /**
-	   * FIVE
-	   */
-	  FIVE: 53,
-	  /**
-	   * SIX
-	   */
-	  SIX: 54,
-	  /**
-	   * SEVEN
-	   */
-	  SEVEN: 55,
-	  /**
-	   * EIGHT
-	   */
-	  EIGHT: 56,
-	  /**
-	   * NINE
-	   */
-	  NINE: 57,
-	  /**
-	   * QUESTION_MARK
-	   */
-	  QUESTION_MARK: 63, // needs localization
-	  /**
-	   * A
-	   */
-	  A: 65,
-	  /**
-	   * B
-	   */
-	  B: 66,
-	  /**
-	   * C
-	   */
-	  C: 67,
-	  /**
-	   * D
-	   */
-	  D: 68,
-	  /**
-	   * E
-	   */
-	  E: 69,
-	  /**
-	   * F
-	   */
-	  F: 70,
-	  /**
-	   * G
-	   */
-	  G: 71,
-	  /**
-	   * H
-	   */
-	  H: 72,
-	  /**
-	   * I
-	   */
-	  I: 73,
-	  /**
-	   * J
-	   */
-	  J: 74,
-	  /**
-	   * K
-	   */
-	  K: 75,
-	  /**
-	   * L
-	   */
-	  L: 76,
-	  /**
-	   * M
-	   */
-	  M: 77,
-	  /**
-	   * N
-	   */
-	  N: 78,
-	  /**
-	   * O
-	   */
-	  O: 79,
-	  /**
-	   * P
-	   */
-	  P: 80,
-	  /**
-	   * Q
-	   */
-	  Q: 81,
-	  /**
-	   * R
-	   */
-	  R: 82,
-	  /**
-	   * S
-	   */
-	  S: 83,
-	  /**
-	   * T
-	   */
-	  T: 84,
-	  /**
-	   * U
-	   */
-	  U: 85,
-	  /**
-	   * V
-	   */
-	  V: 86,
-	  /**
-	   * W
-	   */
-	  W: 87,
-	  /**
-	   * X
-	   */
-	  X: 88,
-	  /**
-	   * Y
-	   */
-	  Y: 89,
-	  /**
-	   * Z
-	   */
-	  Z: 90,
-	  /**
-	   * META
-	   */
-	  META: 91, // WIN_KEY_LEFT
-	  /**
-	   * WIN_KEY_RIGHT
-	   */
-	  WIN_KEY_RIGHT: 92,
-	  /**
-	   * CONTEXT_MENU
-	   */
-	  CONTEXT_MENU: 93,
-	  /**
-	   * NUM_ZERO
-	   */
-	  NUM_ZERO: 96,
-	  /**
-	   * NUM_ONE
-	   */
-	  NUM_ONE: 97,
-	  /**
-	   * NUM_TWO
-	   */
-	  NUM_TWO: 98,
-	  /**
-	   * NUM_THREE
-	   */
-	  NUM_THREE: 99,
-	  /**
-	   * NUM_FOUR
-	   */
-	  NUM_FOUR: 100,
-	  /**
-	   * NUM_FIVE
-	   */
-	  NUM_FIVE: 101,
-	  /**
-	   * NUM_SIX
-	   */
-	  NUM_SIX: 102,
-	  /**
-	   * NUM_SEVEN
-	   */
-	  NUM_SEVEN: 103,
-	  /**
-	   * NUM_EIGHT
-	   */
-	  NUM_EIGHT: 104,
-	  /**
-	   * NUM_NINE
-	   */
-	  NUM_NINE: 105,
-	  /**
-	   * NUM_MULTIPLY
-	   */
-	  NUM_MULTIPLY: 106,
-	  /**
-	   * NUM_PLUS
-	   */
-	  NUM_PLUS: 107,
-	  /**
-	   * NUM_MINUS
-	   */
-	  NUM_MINUS: 109,
-	  /**
-	   * NUM_PERIOD
-	   */
-	  NUM_PERIOD: 110,
-	  /**
-	   * NUM_DIVISION
-	   */
-	  NUM_DIVISION: 111,
-	  /**
-	   * F1
-	   */
-	  F1: 112,
-	  /**
-	   * F2
-	   */
-	  F2: 113,
-	  /**
-	   * F3
-	   */
-	  F3: 114,
-	  /**
-	   * F4
-	   */
-	  F4: 115,
-	  /**
-	   * F5
-	   */
-	  F5: 116,
-	  /**
-	   * F6
-	   */
-	  F6: 117,
-	  /**
-	   * F7
-	   */
-	  F7: 118,
-	  /**
-	   * F8
-	   */
-	  F8: 119,
-	  /**
-	   * F9
-	   */
-	  F9: 120,
-	  /**
-	   * F10
-	   */
-	  F10: 121,
-	  /**
-	   * F11
-	   */
-	  F11: 122,
-	  /**
-	   * F12
-	   */
-	  F12: 123,
-	  /**
-	   * NUMLOCK
-	   */
-	  NUMLOCK: 144,
-	  /**
-	   * SEMICOLON
-	   */
-	  SEMICOLON: 186, // needs localization
-	  /**
-	   * DASH
-	   */
-	  DASH: 189, // needs localization
-	  /**
-	   * EQUALS
-	   */
-	  EQUALS: 187, // needs localization
-	  /**
-	   * COMMA
-	   */
-	  COMMA: 188, // needs localization
-	  /**
-	   * PERIOD
-	   */
-	  PERIOD: 190, // needs localization
-	  /**
-	   * SLASH
-	   */
-	  SLASH: 191, // needs localization
-	  /**
-	   * APOSTROPHE
-	   */
-	  APOSTROPHE: 192, // needs localization
-	  /**
-	   * SINGLE_QUOTE
-	   */
-	  SINGLE_QUOTE: 222, // needs localization
-	  /**
-	   * OPEN_SQUARE_BRACKET
-	   */
-	  OPEN_SQUARE_BRACKET: 219, // needs localization
-	  /**
-	   * BACKSLASH
-	   */
-	  BACKSLASH: 220, // needs localization
-	  /**
-	   * CLOSE_SQUARE_BRACKET
-	   */
-	  CLOSE_SQUARE_BRACKET: 221, // needs localization
-	  /**
-	   * WIN_KEY
-	   */
-	  WIN_KEY: 224,
-	  /**
-	   * MAC_FF_META
-	   */
-	  MAC_FF_META: 224, // Firefox (Gecko) fires this for the meta key instead of 91
-	  /**
-	   * WIN_IME
-	   */
-	  WIN_IME: 229
-	};
-	
-	/*
-	 whether text and modified key is entered at the same time.
-	 */
-	KeyCode.isTextModifyingKeyEvent = function isTextModifyingKeyEvent(e) {
-	  var keyCode = e.keyCode;
-	  if (e.altKey && !e.ctrlKey || e.metaKey ||
-	  // Function keys don't generate text
-	  keyCode >= KeyCode.F1 && keyCode <= KeyCode.F12) {
-	    return false;
-	  }
-	
-	  // The following keys are quite harmless, even in combination with
-	  // CTRL, ALT or SHIFT.
-	  switch (keyCode) {
-	    case KeyCode.ALT:
-	    case KeyCode.CAPS_LOCK:
-	    case KeyCode.CONTEXT_MENU:
-	    case KeyCode.CTRL:
-	    case KeyCode.DOWN:
-	    case KeyCode.END:
-	    case KeyCode.ESC:
-	    case KeyCode.HOME:
-	    case KeyCode.INSERT:
-	    case KeyCode.LEFT:
-	    case KeyCode.MAC_FF_META:
-	    case KeyCode.META:
-	    case KeyCode.NUMLOCK:
-	    case KeyCode.NUM_CENTER:
-	    case KeyCode.PAGE_DOWN:
-	    case KeyCode.PAGE_UP:
-	    case KeyCode.PAUSE:
-	    case KeyCode.PRINT_SCREEN:
-	    case KeyCode.RIGHT:
-	    case KeyCode.SHIFT:
-	    case KeyCode.UP:
-	    case KeyCode.WIN_KEY:
-	    case KeyCode.WIN_KEY_RIGHT:
-	      return false;
-	    default:
-	      return true;
-	  }
-	};
-	
-	/*
-	 whether character is entered.
-	 */
-	KeyCode.isCharacterKey = function isCharacterKey(keyCode) {
-	  if (keyCode >= KeyCode.ZERO && keyCode <= KeyCode.NINE) {
-	    return true;
-	  }
-	
-	  if (keyCode >= KeyCode.NUM_ZERO && keyCode <= KeyCode.NUM_MULTIPLY) {
-	    return true;
-	  }
-	
-	  if (keyCode >= KeyCode.A && keyCode <= KeyCode.Z) {
-	    return true;
-	  }
-	
-	  // Safari sends zero key code for non-latin characters.
-	  if (window.navigation.userAgent.indexOf('WebKit') !== -1 && keyCode === 0) {
-	    return true;
-	  }
-	
-	  switch (keyCode) {
-	    case KeyCode.SPACE:
-	    case KeyCode.QUESTION_MARK:
-	    case KeyCode.NUM_PLUS:
-	    case KeyCode.NUM_MINUS:
-	    case KeyCode.NUM_PERIOD:
-	    case KeyCode.NUM_DIVISION:
-	    case KeyCode.SEMICOLON:
-	    case KeyCode.DASH:
-	    case KeyCode.EQUALS:
-	    case KeyCode.COMMA:
-	    case KeyCode.PERIOD:
-	    case KeyCode.SLASH:
-	    case KeyCode.APOSTROPHE:
-	    case KeyCode.SINGLE_QUOTE:
-	    case KeyCode.OPEN_SQUARE_BRACKET:
-	    case KeyCode.BACKSLASH:
-	    case KeyCode.CLOSE_SQUARE_BRACKET:
-	      return true;
-	    default:
-	      return false;
-	  }
-	};
-	
-	exports['default'] = KeyCode;
-	module.exports = exports['default'];
-
-/***/ }),
+/* 284 */,
 /* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4642,34 +3400,226 @@ webpackJsonp([2],[
 	module.exports = exports['default'];
 
 /***/ }),
-/* 292 */
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(328);
+	
+	__webpack_require__(329);
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(38);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _src = __webpack_require__(330);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	var _util = __webpack_require__(260);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	var Demo = _react2.default.createClass({
+	  displayName: 'Demo',
+	  getInitialState: function getInitialState() {
+	    return {
+	      gData: _util.gData,
+	      autoExpandParent: true,
+	      expandedKeys: ['0-0-key', '0-0-0-key', '0-0-0-0-key']
+	    };
+	  },
+	  onDragStart: function onDragStart(info) {
+	    console.log('start', info);
+	  },
+	  onDragEnter: function onDragEnter(info) {
+	    console.log('enter', info);
+	    this.setState({
+	      expandedKeys: info.expandedKeys
+	    });
+	  },
+	  onDrop: function onDrop(info) {
+	    console.log('drop', info);
+	    var dropKey = info.node.props.eventKey;
+	    var dragKey = info.dragNode.props.eventKey;
+	    // const dragNodesKeys = info.dragNodesKeys;
+	    var loop = function loop(data, key, callback) {
+	      data.forEach(function (item, index, arr) {
+	        if (item.key === key) {
+	          return callback(item, index, arr);
+	        }
+	        if (item.children) {
+	          return loop(item.children, key, callback);
+	        }
+	      });
+	    };
+	    var data = [].concat(_toConsumableArray(this.state.gData));
+	    var dragObj = void 0;
+	    loop(data, dragKey, function (item, index, arr) {
+	      arr.splice(index, 1);
+	      dragObj = item;
+	    });
+	    if (info.dropToGap) {
+	      var ar = void 0;
+	      var i = void 0;
+	      loop(data, dropKey, function (item, index, arr) {
+	        ar = arr;
+	        i = index;
+	      });
+	      ar.splice(i, 0, dragObj);
+	    } else {
+	      loop(data, dropKey, function (item) {
+	        item.children = item.children || [];
+	        // where to insert 示例添加到尾部，可以是随意位置
+	        item.children.push(dragObj);
+	      });
+	    }
+	    this.setState({
+	      gData: data,
+	      expandedKeys: info.rawExpandedKeys.concat([info.node.props.eventKey])
+	    });
+	  },
+	  onExpand: function onExpand(expandedKeys) {
+	    console.log('onExpand', arguments);
+	    this.setState({
+	      expandedKeys: expandedKeys,
+	      autoExpandParent: false
+	    });
+	  },
+	  render: function render() {
+	    var loop = function loop(data) {
+	      return data.map(function (item) {
+	        if (item.children && item.children.length) {
+	          return _react2.default.createElement(
+	            _src.TreeNode,
+	            { key: item.key, title: item.title },
+	            loop(item.children)
+	          );
+	        }
+	        return _react2.default.createElement(_src.TreeNode, { key: item.key, title: item.title });
+	      });
+	    };
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'draggable-demo' },
+	      _react2.default.createElement(
+	        'h2',
+	        null,
+	        'draggable '
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        'drag a node into another node'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'draggable-container' },
+	        _react2.default.createElement(
+	          _src2.default,
+	          {
+	            expandedKeys: this.state.expandedKeys,
+	            onExpand: this.onExpand, autoExpandParent: this.state.autoExpandParent,
+	            draggable: true,
+	            onDragStart: this.onDragStart,
+	            onDragEnter: this.onDragEnter,
+	            onDrop: this.onDrop
+	          },
+	          loop(this.state.gData)
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	_reactDom2.default.render(_react2.default.createElement(Demo, null), document.getElementById('__react-content'));
+
+/***/ }),
+/* 328 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 329 */
+328,
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
-	var _extends2 = __webpack_require__(263);
+	var _Tree = __webpack_require__(331);
 	
-	var _extends3 = _interopRequireDefault(_extends2);
+	var _Tree2 = _interopRequireDefault(_Tree);
 	
-	var _classCallCheck2 = __webpack_require__(270);
+	var _TreeNode = __webpack_require__(334);
 	
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	var _TreeNode2 = _interopRequireDefault(_TreeNode);
 	
-	var _createClass2 = __webpack_require__(271);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var _createClass3 = _interopRequireDefault(_createClass2);
+	_Tree2.default.TreeNode = _TreeNode2.default;
 	
-	var _possibleConstructorReturn2 = __webpack_require__(275);
+	exports.default = _Tree2.default;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
-	var _inherits2 = __webpack_require__(276);
-	
-	var _inherits3 = _interopRequireDefault(_inherits2);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
 	var _react = __webpack_require__(2);
 	
@@ -4679,93 +3629,1036 @@ webpackJsonp([2],[
 	
 	var _objectAssign2 = _interopRequireDefault(_objectAssign);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	var _classnames = __webpack_require__(332);
 	
-	var LazyRenderBox = function (_React$Component) {
-	    (0, _inherits3['default'])(LazyRenderBox, _React$Component);
+	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	    function LazyRenderBox() {
-	        (0, _classCallCheck3['default'])(this, LazyRenderBox);
-	        return (0, _possibleConstructorReturn3['default'])(this, (LazyRenderBox.__proto__ || Object.getPrototypeOf(LazyRenderBox)).apply(this, arguments));
+	var _util = __webpack_require__(333);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	function noop() {}
+	
+	var Tree = function (_React$Component) {
+	  _inherits(Tree, _React$Component);
+	
+	  function Tree(props) {
+	    _classCallCheck(this, Tree);
+	
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+	
+	    ['onKeyDown', 'onCheck'].forEach(function (m) {
+	      _this[m] = _this[m].bind(_this);
+	    });
+	    _this.contextmenuKeys = [];
+	    _this.checkedKeysChange = true;
+	
+	    _this.state = {
+	      expandedKeys: _this.getDefaultExpandedKeys(props),
+	      checkedKeys: _this.getDefaultCheckedKeys(props),
+	      selectedKeys: _this.getDefaultSelectedKeys(props),
+	      dragNodesKeys: '',
+	      dragOverNodeKey: '',
+	      dropNodeKey: ''
+	    };
+	    return _this;
+	  }
+	
+	  Tree.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+	    var expandedKeys = this.getDefaultExpandedKeys(nextProps, true);
+	    var checkedKeys = this.getDefaultCheckedKeys(nextProps, true);
+	    var selectedKeys = this.getDefaultSelectedKeys(nextProps, true);
+	    var st = {};
+	    if (expandedKeys) {
+	      st.expandedKeys = expandedKeys;
+	    }
+	    if (checkedKeys) {
+	      if (nextProps.checkedKeys === this.props.checkedKeys) {
+	        this.checkedKeysChange = false;
+	      } else {
+	        this.checkedKeysChange = true;
+	      }
+	      st.checkedKeys = checkedKeys;
+	    }
+	    if (selectedKeys) {
+	      st.selectedKeys = selectedKeys;
+	    }
+	    this.setState(st);
+	  };
+	
+	  Tree.prototype.onDragStart = function onDragStart(e, treeNode) {
+	    this.dragNode = treeNode;
+	    this.dragNodesKeys = this.getDragNodes(treeNode);
+	    var st = {
+	      dragNodesKeys: this.dragNodesKeys
+	    };
+	    var expandedKeys = this.getExpandedKeys(treeNode, false);
+	    if (expandedKeys) {
+	      // Controlled expand, save and then reset
+	      this.getRawExpandedKeys();
+	      st.expandedKeys = expandedKeys;
+	    }
+	    this.setState(st);
+	    this.props.onDragStart({
+	      event: e,
+	      node: treeNode
+	    });
+	    this._dropTrigger = false;
+	  };
+	
+	  Tree.prototype.onDragEnterGap = function onDragEnterGap(e, treeNode) {
+	    var offsetTop = (0, _util.getOffset)(treeNode.refs.selectHandle).top;
+	    var offsetHeight = treeNode.refs.selectHandle.offsetHeight;
+	    var pageY = e.pageY;
+	    var gapHeight = 2;
+	    if (pageY > offsetTop + offsetHeight - gapHeight) {
+	      this.dropPosition = 1;
+	      return 1;
+	    }
+	    if (pageY < offsetTop + gapHeight) {
+	      this.dropPosition = -1;
+	      return -1;
+	    }
+	    this.dropPosition = 0;
+	    return 0;
+	  };
+	
+	  Tree.prototype.onDragEnter = function onDragEnter(e, treeNode) {
+	    var enterGap = this.onDragEnterGap(e, treeNode);
+	    if (this.dragNode.props.eventKey === treeNode.props.eventKey && enterGap === 0) {
+	      this.setState({
+	        dragOverNodeKey: ''
+	      });
+	      return;
+	    }
+	    var st = {
+	      dragOverNodeKey: treeNode.props.eventKey
+	    };
+	    var expandedKeys = this.getExpandedKeys(treeNode, true);
+	    if (expandedKeys) {
+	      this.getRawExpandedKeys();
+	      st.expandedKeys = expandedKeys;
+	    }
+	    this.setState(st);
+	    this.props.onDragEnter({
+	      event: e,
+	      node: treeNode,
+	      expandedKeys: expandedKeys && [].concat(_toConsumableArray(expandedKeys)) || [].concat(_toConsumableArray(this.state.expandedKeys))
+	    });
+	  };
+	
+	  Tree.prototype.onDragOver = function onDragOver(e, treeNode) {
+	    this.props.onDragOver({ event: e, node: treeNode });
+	  };
+	
+	  Tree.prototype.onDragLeave = function onDragLeave(e, treeNode) {
+	    this.props.onDragLeave({ event: e, node: treeNode });
+	  };
+	
+	  Tree.prototype.onDrop = function onDrop(e, treeNode) {
+	    var key = treeNode.props.eventKey;
+	    this.setState({
+	      dragOverNodeKey: '',
+	      dropNodeKey: key
+	    });
+	    if (this.dragNodesKeys.indexOf(key) > -1) {
+	      if (console.warn) {
+	        console.warn('can not drop to dragNode(include it\'s children node)');
+	      }
+	      return false;
 	    }
 	
-	    (0, _createClass3['default'])(LazyRenderBox, [{
-	        key: 'shouldComponentUpdate',
-	        value: function shouldComponentUpdate(nextProps) {
-	            return !!nextProps.hiddenClassName || !!nextProps.visible;
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var className = this.props.className;
-	            if (!!this.props.hiddenClassName && !this.props.visible) {
-	                className += ' ' + this.props.hiddenClassName;
-	            }
-	            var props = (0, _objectAssign2['default'])({}, this.props);
-	            delete props.hiddenClassName;
-	            delete props.visible;
-	            props.className = className;
-	            return _react2['default'].createElement("div", (0, _extends3['default'])({}, props));
-	        }
-	    }]);
-	    return LazyRenderBox;
-	}(_react2['default'].Component);
+	    var posArr = treeNode.props.pos.split('-');
+	    var res = {
+	      event: e,
+	      node: treeNode,
+	      dragNode: this.dragNode,
+	      dragNodesKeys: [].concat(_toConsumableArray(this.dragNodesKeys)),
+	      dropPosition: this.dropPosition + Number(posArr[posArr.length - 1]),
+	      dropEdge: this.dropPosition
+	    };
+	    if (this.dropPosition !== 0) {
+	      res.dropToGap = true;
+	    }
+	    if ('expandedKeys' in this.props) {
+	      res.rawExpandedKeys = [].concat(_toConsumableArray(this._rawExpandedKeys)) || [].concat(_toConsumableArray(this.state.expandedKeys));
+	    }
+	    this.props.onDrop(res);
+	    this._dropTrigger = true;
+	  };
 	
-	exports['default'] = LazyRenderBox;
+	  Tree.prototype.onDragEnd = function onDragEnd(e, treeNode) {
+	    this.setState({
+	      dragOverNodeKey: ''
+	    });
+	    this.props.onDragEnd({ event: e, node: treeNode });
+	  };
+	
+	  Tree.prototype.onExpand = function onExpand(treeNode) {
+	    var _this2 = this;
+	
+	    var expanded = !treeNode.props.expanded;
+	    var controlled = 'expandedKeys' in this.props;
+	    var expandedKeys = [].concat(_toConsumableArray(this.state.expandedKeys));
+	    var index = expandedKeys.indexOf(treeNode.props.eventKey);
+	    if (expanded && index === -1) {
+	      expandedKeys.push(treeNode.props.eventKey);
+	    } else if (!expanded && index > -1) {
+	      expandedKeys.splice(index, 1);
+	    }
+	    if (!controlled) {
+	      this.setState({ expandedKeys: expandedKeys });
+	    }
+	    this.props.onExpand(expandedKeys, { node: treeNode, expanded: expanded });
+	
+	    // after data loaded, need set new expandedKeys
+	    if (expanded && this.props.loadData) {
+	      return this.props.loadData(treeNode).then(function () {
+	        if (!controlled) {
+	          _this2.setState({ expandedKeys: expandedKeys });
+	        }
+	      });
+	    }
+	  };
+	
+	  Tree.prototype.onCheck = function onCheck(treeNode) {
+	    var _this3 = this;
+	
+	    var checked = !treeNode.props.checked;
+	    if (treeNode.props.halfChecked) {
+	      checked = true;
+	    }
+	    var key = treeNode.props.eventKey;
+	    var checkedKeys = [].concat(_toConsumableArray(this.state.checkedKeys));
+	    var index = checkedKeys.indexOf(key);
+	
+	    var newSt = {
+	      event: 'check',
+	      node: treeNode,
+	      checked: checked
+	    };
+	
+	    if (this.props.checkStrictly && 'checkedKeys' in this.props) {
+	      if (checked && index === -1) {
+	        checkedKeys.push(key);
+	      }
+	      if (!checked && index > -1) {
+	        checkedKeys.splice(index, 1);
+	      }
+	      newSt.checkedNodes = [];
+	      (0, _util.loopAllChildren)(this.props.children, function (item, ind, pos, keyOrPos) {
+	        if (checkedKeys.indexOf(keyOrPos) !== -1) {
+	          newSt.checkedNodes.push(item);
+	        }
+	      });
+	      this.props.onCheck((0, _util.getStrictlyValue)(checkedKeys, this.props.checkedKeys.halfChecked), newSt);
+	    } else {
+	      if (checked && index === -1) {
+	        this.treeNodesStates[treeNode.props.pos].checked = true;
+	        var checkedPositions = [];
+	        Object.keys(this.treeNodesStates).forEach(function (i) {
+	          if (_this3.treeNodesStates[i].checked) {
+	            checkedPositions.push(i);
+	          }
+	        });
+	        (0, _util.handleCheckState)(this.treeNodesStates, (0, _util.filterParentPosition)(checkedPositions), true);
+	      }
+	      if (!checked) {
+	        this.treeNodesStates[treeNode.props.pos].checked = false;
+	        this.treeNodesStates[treeNode.props.pos].halfChecked = false;
+	        (0, _util.handleCheckState)(this.treeNodesStates, [treeNode.props.pos], false);
+	      }
+	      var checkKeys = (0, _util.getCheck)(this.treeNodesStates);
+	      newSt.checkedNodes = checkKeys.checkedNodes;
+	      newSt.checkedNodesPositions = checkKeys.checkedNodesPositions;
+	      newSt.halfCheckedKeys = checkKeys.halfCheckedKeys;
+	      this.checkKeys = checkKeys;
+	
+	      this._checkedKeys = checkedKeys = checkKeys.checkedKeys;
+	      if (!('checkedKeys' in this.props)) {
+	        this.setState({
+	          checkedKeys: checkedKeys
+	        });
+	      }
+	      this.props.onCheck(checkedKeys, newSt);
+	    }
+	  };
+	
+	  Tree.prototype.onSelect = function onSelect(treeNode) {
+	    var props = this.props;
+	    var selectedKeys = [].concat(_toConsumableArray(this.state.selectedKeys));
+	    var eventKey = treeNode.props.eventKey;
+	    var index = selectedKeys.indexOf(eventKey);
+	    var selected = void 0;
+	    if (index !== -1) {
+	      selected = false;
+	      selectedKeys.splice(index, 1);
+	    } else {
+	      selected = true;
+	      if (!props.multiple) {
+	        selectedKeys.length = 0;
+	      }
+	      selectedKeys.push(eventKey);
+	    }
+	    var selectedNodes = [];
+	    if (selectedKeys.length) {
+	      (0, _util.loopAllChildren)(this.props.children, function (item) {
+	        if (selectedKeys.indexOf(item.key) !== -1) {
+	          selectedNodes.push(item);
+	        }
+	      });
+	    }
+	    var newSt = {
+	      event: 'select',
+	      node: treeNode,
+	      selected: selected,
+	      selectedNodes: selectedNodes
+	    };
+	    if (!('selectedKeys' in this.props)) {
+	      this.setState({
+	        selectedKeys: selectedKeys
+	      });
+	    }
+	    props.onSelect(selectedKeys, newSt);
+	  };
+	
+	  Tree.prototype.onMouseEnter = function onMouseEnter(e, treeNode) {
+	    this.props.onMouseEnter({ event: e, node: treeNode });
+	  };
+	
+	  Tree.prototype.onMouseLeave = function onMouseLeave(e, treeNode) {
+	    this.props.onMouseLeave({ event: e, node: treeNode });
+	  };
+	
+	  Tree.prototype.onContextMenu = function onContextMenu(e, treeNode) {
+	    this.props.onRightClick({ event: e, node: treeNode });
+	  };
+	
+	  // all keyboard events callbacks run from here at first
+	
+	
+	  Tree.prototype.onKeyDown = function onKeyDown(e) {
+	    e.preventDefault();
+	  };
+	
+	  Tree.prototype.getFilterExpandedKeys = function getFilterExpandedKeys(props, expandKeyProp, expandAll) {
+	    var keys = props[expandKeyProp];
+	    if (!expandAll && !props.autoExpandParent) {
+	      return keys || [];
+	    }
+	    var expandedPositionArr = [];
+	    if (props.autoExpandParent) {
+	      (0, _util.loopAllChildren)(props.children, function (item, index, pos, newKey) {
+	        if (keys.indexOf(newKey) > -1) {
+	          expandedPositionArr.push(pos);
+	        }
+	      });
+	    }
+	    var filterExpandedKeys = [];
+	    (0, _util.loopAllChildren)(props.children, function (item, index, pos, newKey) {
+	      if (expandAll) {
+	        filterExpandedKeys.push(newKey);
+	      } else if (props.autoExpandParent) {
+	        expandedPositionArr.forEach(function (p) {
+	          if ((p.split('-').length > pos.split('-').length && (0, _util.isInclude)(pos.split('-'), p.split('-')) || pos === p) && filterExpandedKeys.indexOf(newKey) === -1) {
+	            filterExpandedKeys.push(newKey);
+	          }
+	        });
+	      }
+	    });
+	    return filterExpandedKeys.length ? filterExpandedKeys : keys;
+	  };
+	
+	  Tree.prototype.getDefaultExpandedKeys = function getDefaultExpandedKeys(props, willReceiveProps) {
+	    var expandedKeys = willReceiveProps ? undefined : this.getFilterExpandedKeys(props, 'defaultExpandedKeys', props.defaultExpandedKeys.length ? false : props.defaultExpandAll);
+	    if ('expandedKeys' in props) {
+	      expandedKeys = (props.autoExpandParent ? this.getFilterExpandedKeys(props, 'expandedKeys', false) : props.expandedKeys) || [];
+	    }
+	    return expandedKeys;
+	  };
+	
+	  Tree.prototype.getDefaultCheckedKeys = function getDefaultCheckedKeys(props, willReceiveProps) {
+	    var checkedKeys = willReceiveProps ? undefined : props.defaultCheckedKeys;
+	    if ('checkedKeys' in props) {
+	      checkedKeys = props.checkedKeys || [];
+	      if (props.checkStrictly) {
+	        if (props.checkedKeys.checked) {
+	          checkedKeys = props.checkedKeys.checked;
+	        } else if (!Array.isArray(props.checkedKeys)) {
+	          checkedKeys = [];
+	        }
+	      }
+	    }
+	    return checkedKeys;
+	  };
+	
+	  Tree.prototype.getDefaultSelectedKeys = function getDefaultSelectedKeys(props, willReceiveProps) {
+	    var getKeys = function getKeys(keys) {
+	      if (props.multiple) {
+	        return [].concat(_toConsumableArray(keys));
+	      }
+	      if (keys.length) {
+	        return [keys[0]];
+	      }
+	      return keys;
+	    };
+	    var selectedKeys = willReceiveProps ? undefined : getKeys(props.defaultSelectedKeys);
+	    if ('selectedKeys' in props) {
+	      selectedKeys = getKeys(props.selectedKeys);
+	    }
+	    return selectedKeys;
+	  };
+	
+	  Tree.prototype.getRawExpandedKeys = function getRawExpandedKeys() {
+	    if (!this._rawExpandedKeys && 'expandedKeys' in this.props) {
+	      this._rawExpandedKeys = [].concat(_toConsumableArray(this.state.expandedKeys));
+	    }
+	  };
+	
+	  Tree.prototype.getOpenTransitionName = function getOpenTransitionName() {
+	    var props = this.props;
+	    var transitionName = props.openTransitionName;
+	    var animationName = props.openAnimation;
+	    if (!transitionName && typeof animationName === 'string') {
+	      transitionName = props.prefixCls + '-open-' + animationName;
+	    }
+	    return transitionName;
+	  };
+	
+	  Tree.prototype.getDragNodes = function getDragNodes(treeNode) {
+	    var dragNodesKeys = [];
+	    var tPArr = treeNode.props.pos.split('-');
+	    (0, _util.loopAllChildren)(this.props.children, function (item, index, pos, newKey) {
+	      var pArr = pos.split('-');
+	      if (treeNode.props.pos === pos || tPArr.length < pArr.length && (0, _util.isInclude)(tPArr, pArr)) {
+	        dragNodesKeys.push(newKey);
+	      }
+	    });
+	    return dragNodesKeys;
+	  };
+	
+	  Tree.prototype.getExpandedKeys = function getExpandedKeys(treeNode, expand) {
+	    var key = treeNode.props.eventKey;
+	    var expandedKeys = this.state.expandedKeys;
+	    var expandedIndex = expandedKeys.indexOf(key);
+	    var exKeys = void 0;
+	    if (expandedIndex > -1 && !expand) {
+	      exKeys = [].concat(_toConsumableArray(expandedKeys));
+	      exKeys.splice(expandedIndex, 1);
+	      return exKeys;
+	    }
+	    if (expand && expandedKeys.indexOf(key) === -1) {
+	      return expandedKeys.concat([key]);
+	    }
+	  };
+	
+	  Tree.prototype.filterTreeNode = function filterTreeNode(treeNode) {
+	    var filterTreeNode = this.props.filterTreeNode;
+	    if (typeof filterTreeNode !== 'function' || treeNode.props.disabled) {
+	      return false;
+	    }
+	    return filterTreeNode.call(this, treeNode);
+	  };
+	
+	  Tree.prototype.renderTreeNode = function renderTreeNode(child, index) {
+	    var level = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+	
+	    var pos = level + '-' + index;
+	    var key = child.key || pos;
+	    var state = this.state;
+	    var props = this.props;
+	
+	    // prefer to child's own selectable property if passed
+	    var selectable = props.selectable;
+	    if (child.props.hasOwnProperty('selectable')) {
+	      selectable = child.props.selectable;
+	    }
+	
+	    var levelInt = ((level + '').match(/\-/g) || []).length;
+	
+	    var cloneProps = {
+	      ref: 'treeNode-' + key,
+	      root: this,
+	      eventKey: key,
+	      pos: pos,
+	      level: levelInt,
+	      selectable: selectable,
+	      loadData: props.loadData,
+	      onMouseEnter: props.onMouseEnter,
+	      onMouseLeave: props.onMouseLeave,
+	      onRightClick: props.onRightClick,
+	      prefixCls: props.prefixCls,
+	      showLine: props.showLine,
+	      showIcon: props.showIcon,
+	      draggable: props.draggable,
+	      dragOver: state.dragOverNodeKey === key && this.dropPosition === 0,
+	      dragOverGapTop: state.dragOverNodeKey === key && this.dropPosition === -1,
+	      dragOverGapBottom: state.dragOverNodeKey === key && this.dropPosition === 1,
+	      _dropTrigger: this._dropTrigger,
+	      expanded: state.expandedKeys.indexOf(key) !== -1,
+	      selected: state.selectedKeys.indexOf(key) !== -1,
+	      openTransitionName: this.getOpenTransitionName(),
+	      openAnimation: props.openAnimation,
+	      filterTreeNode: this.filterTreeNode.bind(this),
+	      leftShift: this.props.itemLeftShift,
+	      leftShiftProp: this.props.itemLeftShiftProp
+	    };
+	    if (props.checkable) {
+	      cloneProps.checkable = props.checkable;
+	      if (props.checkStrictly) {
+	        if (state.checkedKeys) {
+	          cloneProps.checked = state.checkedKeys.indexOf(key) !== -1 || false;
+	        }
+	        if (props.checkedKeys.halfChecked) {
+	          cloneProps.halfChecked = props.checkedKeys.halfChecked.indexOf(key) !== -1 || false;
+	        } else {
+	          cloneProps.halfChecked = false;
+	        }
+	      } else {
+	        if (this.checkedKeys) {
+	          cloneProps.checked = this.checkedKeys.indexOf(key) !== -1 || false;
+	        }
+	        cloneProps.halfChecked = this.halfCheckedKeys.indexOf(key) !== -1;
+	      }
+	
+	      if (this.treeNodesStates[pos]) {
+	        (0, _objectAssign2.default)(cloneProps, this.treeNodesStates[pos].siblingPosition);
+	      }
+	    }
+	    return _react2.default.cloneElement(child, cloneProps);
+	  };
+	
+	  Tree.prototype.render = function render() {
+	    var _this4 = this;
+	
+	    var props = this.props;
+	    var domProps = {
+	      className: (0, _classnames2.default)(props.className, props.prefixCls),
+	      role: 'tree-node'
+	    };
+	    if (props.focusable) {
+	      domProps.tabIndex = '0';
+	      domProps.onKeyDown = this.onKeyDown;
+	    }
+	    // console.log(this.state.expandedKeys, this._rawExpandedKeys, props.children);
+	    if (props.checkable && (this.checkedKeysChange || props.loadData)) {
+	      if (props.checkStrictly) {
+	        this.treeNodesStates = {};
+	        (0, _util.loopAllChildren)(props.children, function (item, index, pos, keyOrPos, siblingPosition) {
+	          _this4.treeNodesStates[pos] = {
+	            siblingPosition: siblingPosition
+	          };
+	        });
+	      } else if (props._treeNodesStates) {
+	        this.treeNodesStates = props._treeNodesStates.treeNodesStates;
+	        this.halfCheckedKeys = props._treeNodesStates.halfCheckedKeys;
+	        this.checkedKeys = props._treeNodesStates.checkedKeys;
+	      } else {
+	        var checkedKeys = this.state.checkedKeys;
+	        var checkKeys = void 0;
+	        if (!props.loadData && this.checkKeys && this._checkedKeys && (0, _util.arraysEqual)(this._checkedKeys, checkedKeys)) {
+	          // if checkedKeys the same as _checkedKeys from onCheck, use _checkedKeys.
+	          checkKeys = this.checkKeys;
+	        } else {
+	          var checkedPositions = [];
+	          this.treeNodesStates = {};
+	          (0, _util.loopAllChildren)(props.children, function (item, index, pos, keyOrPos, siblingPosition) {
+	            _this4.treeNodesStates[pos] = {
+	              node: item,
+	              key: keyOrPos,
+	              checked: false,
+	              halfChecked: false,
+	              siblingPosition: siblingPosition
+	            };
+	            if (checkedKeys.indexOf(keyOrPos) !== -1) {
+	              _this4.treeNodesStates[pos].checked = true;
+	              checkedPositions.push(pos);
+	            }
+	          });
+	          // if the parent node's key exists, it all children node will be checked
+	          (0, _util.handleCheckState)(this.treeNodesStates, (0, _util.filterParentPosition)(checkedPositions), true);
+	          checkKeys = (0, _util.getCheck)(this.treeNodesStates);
+	        }
+	        this.halfCheckedKeys = checkKeys.halfCheckedKeys;
+	        this.checkedKeys = checkKeys.checkedKeys;
+	      }
+	    }
+	
+	    return _react2.default.createElement(
+	      'ul',
+	      _extends({}, domProps, { unselectable: true, ref: 'tree' }),
+	      _react2.default.Children.map(props.children, this.renderTreeNode, this)
+	    );
+	  };
+	
+	  return Tree;
+	}(_react2.default.Component);
+	
+	Tree.propTypes = {
+	  prefixCls: _react.PropTypes.string,
+	  children: _react.PropTypes.any,
+	  showLine: _react.PropTypes.bool,
+	  showIcon: _react.PropTypes.bool,
+	  selectable: _react.PropTypes.bool,
+	  multiple: _react.PropTypes.bool,
+	  checkable: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.node]),
+	  _treeNodesStates: _react.PropTypes.object,
+	  checkStrictly: _react.PropTypes.bool,
+	  draggable: _react.PropTypes.bool,
+	  autoExpandParent: _react.PropTypes.bool,
+	  defaultExpandAll: _react.PropTypes.bool,
+	  defaultExpandedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+	  expandedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+	  defaultCheckedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+	  checkedKeys: _react.PropTypes.oneOfType([_react.PropTypes.arrayOf(_react.PropTypes.string), _react.PropTypes.object]),
+	  defaultSelectedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+	  selectedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+	  onExpand: _react.PropTypes.func,
+	  onCheck: _react.PropTypes.func,
+	  onSelect: _react.PropTypes.func,
+	  loadData: _react.PropTypes.func,
+	  onMouseEnter: _react.PropTypes.func,
+	  onMouseLeave: _react.PropTypes.func,
+	  onRightClick: _react.PropTypes.func,
+	  onDragStart: _react.PropTypes.func,
+	  onDragEnter: _react.PropTypes.func,
+	  onDragOver: _react.PropTypes.func,
+	  onDragLeave: _react.PropTypes.func,
+	  onDrop: _react.PropTypes.func,
+	  onDragEnd: _react.PropTypes.func,
+	  filterTreeNode: _react.PropTypes.func,
+	  openTransitionName: _react.PropTypes.string,
+	  openAnimation: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.object]),
+	  itemLeftShift: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.arrayOf(_react.PropTypes.number)]),
+	  itemLeftShiftProp: _react.PropTypes.string
+	};
+	
+	Tree.defaultProps = {
+	  prefixCls: 'rc-tree',
+	  showLine: false,
+	  showIcon: true,
+	  selectable: true,
+	  multiple: false,
+	  checkable: false,
+	  checkStrictly: false,
+	  draggable: false,
+	  autoExpandParent: true,
+	  defaultExpandAll: false,
+	  defaultExpandedKeys: [],
+	  defaultCheckedKeys: [],
+	  defaultSelectedKeys: [],
+	  onExpand: noop,
+	  onCheck: noop,
+	  onSelect: noop,
+	  onDragStart: noop,
+	  onDragEnter: noop,
+	  onDragOver: noop,
+	  onDragLeave: noop,
+	  onDrop: noop,
+	  onDragEnd: noop
+	};
+	
+	exports.default = Tree;
 	module.exports = exports['default'];
 
 /***/ }),
-/* 293 */
-/***/ (function(module, exports) {
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+	
+	(function () {
+		'use strict';
+	
+		var hasOwn = {}.hasOwnProperty;
+	
+		function classNames () {
+			var classes = [];
+	
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+	
+				var argType = typeof arg;
+	
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+	
+			return classes.join(' ');
+		}
+	
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ }),
+/* 333 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports['default'] = getScrollBarSize;
-	var cached = void 0;
+	exports.browser = browser;
+	exports.getOffset = getOffset;
+	exports.loopAllChildren = loopAllChildren;
+	exports.isInclude = isInclude;
+	exports.filterParentPosition = filterParentPosition;
+	exports.handleCheckState = handleCheckState;
+	exports.getCheck = getCheck;
+	exports.getStrictlyValue = getStrictlyValue;
+	exports.arraysEqual = arraysEqual;
 	
-	function getScrollBarSize(fresh) {
-	  if (fresh || cached === undefined) {
-	    var inner = document.createElement('div');
-	    inner.style.width = '100%';
-	    inner.style.height = '200px';
+	var _react = __webpack_require__(2);
 	
-	    var outer = document.createElement('div');
-	    var outerStyle = outer.style;
+	var _react2 = _interopRequireDefault(_react);
 	
-	    outerStyle.position = 'absolute';
-	    outerStyle.top = 0;
-	    outerStyle.left = 0;
-	    outerStyle.pointerEvents = 'none';
-	    outerStyle.visibility = 'hidden';
-	    outerStyle.width = '200px';
-	    outerStyle.height = '150px';
-	    outerStyle.overflow = 'hidden';
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	    outer.appendChild(inner);
-	
-	    document.body.appendChild(outer);
-	
-	    var widthContained = inner.offsetWidth;
-	    outer.style.overflow = 'scroll';
-	    var widthScroll = inner.offsetWidth;
-	
-	    if (widthContained === widthScroll) {
-	      widthScroll = outer.clientWidth;
-	    }
-	
-	    document.body.removeChild(outer);
-	
-	    cached = widthContained - widthScroll;
+	function browser(navigator) {
+	  var tem = void 0;
+	  var ua = navigator.userAgent;
+	  var M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+	  if (/trident/i.test(M[1])) {
+	    tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+	    return 'IE ' + (tem[1] || '');
 	  }
-	  return cached;
+	  if (M[1] === 'Chrome') {
+	    tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+	    if (tem) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+	  }
+	  M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+	  tem = ua.match(/version\/(\d+)/i);
+	  if (tem) {
+	    M.splice(1, 1, tem[1]);
+	  }
+	  return M.join(' ');
 	}
-	module.exports = exports['default'];
+	
+	// export function getOffset(el) {
+	//   const obj = el.getBoundingClientRect();
+	//   return {
+	//     left: obj.left + document.body.scrollLeft,
+	//     top: obj.top + document.body.scrollTop,
+	//     width: obj.width,
+	//     height: obj.height
+	//   };
+	// }
+	
+	// // iscroll offset
+	// offset = function (el) {
+	//   var left = -el.offsetLeft,
+	//     top = -el.offsetTop;
+	
+	//   // jshint -W084
+	//   while (el = el.offsetParent) {
+	//     left -= el.offsetLeft;
+	//     top -= el.offsetTop;
+	//   }
+	//   // jshint +W084
+	
+	//   return {
+	//     left: left,
+	//     top: top
+	//   };
+	// }
+	
+	/* eslint-disable */
+	/* eslint no-loop-func: 0*/
+	
+	function getOffset(ele) {
+	  var doc = void 0,
+	      win = void 0,
+	      docElem = void 0,
+	      rect = void 0;
+	
+	  if (!ele.getClientRects().length) {
+	    return { top: 0, left: 0 };
+	  }
+	
+	  rect = ele.getBoundingClientRect();
+	
+	  if (rect.width || rect.height) {
+	    doc = ele.ownerDocument;
+	    win = doc.defaultView;
+	    docElem = doc.documentElement;
+	
+	    return {
+	      top: rect.top + win.pageYOffset - docElem.clientTop,
+	      left: rect.left + win.pageXOffset - docElem.clientLeft
+	    };
+	  }
+	
+	  return rect;
+	}
+	/* eslint-enable */
+	
+	function getChildrenlength(children) {
+	  var len = 1;
+	  if (Array.isArray(children)) {
+	    len = children.length;
+	  }
+	  return len;
+	}
+	
+	function getSiblingPosition(index, len, siblingPosition) {
+	  if (len === 1) {
+	    siblingPosition.first = true;
+	    siblingPosition.last = true;
+	  } else {
+	    siblingPosition.first = index === 0;
+	    siblingPosition.last = index === len - 1;
+	  }
+	  return siblingPosition;
+	}
+	
+	function loopAllChildren(childs, callback, parent) {
+	  var loop = function loop(children, level, _parent) {
+	    var len = getChildrenlength(children);
+	    _react2.default.Children.forEach(children, function (item, index) {
+	      var pos = level + '-' + index;
+	      if (item.props.children && item.type && item.type.isTreeNode) {
+	        loop(item.props.children, pos, { node: item, pos: pos });
+	      }
+	      callback(item, index, pos, item.key || pos, getSiblingPosition(index, len, {}), _parent);
+	    });
+	  };
+	  loop(childs, 0, parent);
+	}
+	
+	function isInclude(smallArray, bigArray) {
+	  return smallArray.every(function (ii, i) {
+	    return ii === bigArray[i];
+	  });
+	}
+	// console.log(isInclude(['0', '1'], ['0', '10', '1']));
+	
+	
+	// arr.length === 628, use time: ~20ms
+	function filterParentPosition(arr) {
+	  var levelObj = {};
+	  arr.forEach(function (item) {
+	    var posLen = item.split('-').length;
+	    if (!levelObj[posLen]) {
+	      levelObj[posLen] = [];
+	    }
+	    levelObj[posLen].push(item);
+	  });
+	  var levelArr = Object.keys(levelObj).sort();
+	
+	  var _loop = function _loop(i) {
+	    if (levelArr[i + 1]) {
+	      levelObj[levelArr[i]].forEach(function (ii) {
+	        var _loop2 = function _loop2(j) {
+	          levelObj[levelArr[j]].forEach(function (_i, index) {
+	            if (isInclude(ii.split('-'), _i.split('-'))) {
+	              levelObj[levelArr[j]][index] = null;
+	            }
+	          });
+	          levelObj[levelArr[j]] = levelObj[levelArr[j]].filter(function (p) {
+	            return p;
+	          });
+	        };
+	
+	        for (var j = i + 1; j < levelArr.length; j++) {
+	          _loop2(j);
+	        }
+	      });
+	    }
+	  };
+	
+	  for (var i = 0; i < levelArr.length; i++) {
+	    _loop(i);
+	  }
+	  var nArr = [];
+	  levelArr.forEach(function (i) {
+	    nArr = nArr.concat(levelObj[i]);
+	  });
+	  return nArr;
+	}
+	// console.log(filterParentPosition(
+	//   ['0-2', '0-3-3', '0-10', '0-10-0', '0-0-1', '0-0', '0-1-1', '0-1']
+	// ));
+	
+	
+	function stripTail(str) {
+	  var arr = str.match(/(.+)(-[^-]+)$/);
+	  var st = '';
+	  if (arr && arr.length === 3) {
+	    st = arr[1];
+	  }
+	  return st;
+	}
+	function splitPosition(pos) {
+	  return pos.split('-');
+	}
+	
+	function handleCheckState(obj, checkedPositionArr, checkIt) {
+	  // console.log(stripTail('0-101-000'));
+	  var objKeys = Object.keys(obj);
+	  // let s = Date.now();
+	  objKeys.forEach(function (i, index) {
+	    var iArr = splitPosition(i);
+	    var saved = false;
+	    checkedPositionArr.forEach(function (_pos) {
+	      // 设置子节点，全选或全不选
+	      var _posArr = splitPosition(_pos);
+	      if (iArr.length > _posArr.length && isInclude(_posArr, iArr)) {
+	        obj[i].halfChecked = false;
+	        obj[i].checked = checkIt;
+	        objKeys[index] = null;
+	      }
+	      if (iArr[0] === _posArr[0] && iArr[1] === _posArr[1]) {
+	        // 如果
+	        saved = true;
+	      }
+	    });
+	    if (!saved) {
+	      objKeys[index] = null;
+	    }
+	  });
+	  // TODO: 循环 2470000 次耗时约 1400 ms。 性能瓶颈！
+	  // console.log(Date.now()-s, checkedPositionArr.length * objKeys.length);
+	  objKeys = objKeys.filter(function (i) {
+	    return i;
+	  }); // filter non null;
+	
+	  var _loop3 = function _loop3(_pIndex) {
+	    // 循环设置父节点的 选中 或 半选状态
+	    var loop = function loop(__pos) {
+	      var _posLen = splitPosition(__pos).length;
+	      if (_posLen <= 2) {
+	        // e.g. '0-0', '0-1'
+	        return;
+	      }
+	      var sibling = 0;
+	      var siblingChecked = 0;
+	      var parentPosition = stripTail(__pos);
+	      objKeys.forEach(function (i /* , index*/) {
+	        var iArr = splitPosition(i);
+	        if (iArr.length === _posLen && isInclude(splitPosition(parentPosition), iArr)) {
+	          sibling++;
+	          if (obj[i].checked) {
+	            siblingChecked++;
+	            var _i = checkedPositionArr.indexOf(i);
+	            if (_i > -1) {
+	              checkedPositionArr.splice(_i, 1);
+	              if (_i <= _pIndex) {
+	                _pIndex--;
+	              }
+	            }
+	          } else if (obj[i].halfChecked) {
+	            siblingChecked += 0.5;
+	          }
+	          // objKeys[index] = null;
+	        }
+	      });
+	      // objKeys = objKeys.filter(i => i); // filter non null;
+	      var parent = obj[parentPosition];
+	      // sibling 不会等于0
+	      // 全不选 - 全选 - 半选
+	      if (siblingChecked === 0) {
+	        parent.checked = false;
+	        parent.halfChecked = false;
+	      } else if (siblingChecked === sibling) {
+	        parent.checked = true;
+	        parent.halfChecked = false;
+	      } else {
+	        parent.halfChecked = true;
+	        parent.checked = false;
+	      }
+	      loop(parentPosition);
+	    };
+	    loop(checkedPositionArr[_pIndex], _pIndex);
+	    pIndex = _pIndex;
+	  };
+	
+	  for (var pIndex = 0; pIndex < checkedPositionArr.length; pIndex++) {
+	    _loop3(pIndex);
+	  }
+	  // console.log(Date.now()-s, objKeys.length, checkIt);
+	}
+	
+	function getCheck(treeNodesStates) {
+	  var halfCheckedKeys = [];
+	  var checkedKeys = [];
+	  var checkedNodes = [];
+	  var checkedNodesPositions = [];
+	  Object.keys(treeNodesStates).forEach(function (item) {
+	    var itemObj = treeNodesStates[item];
+	    if (itemObj.checked) {
+	      checkedKeys.push(itemObj.key);
+	      checkedNodes.push(itemObj.node);
+	      checkedNodesPositions.push({ node: itemObj.node, pos: item });
+	    } else if (itemObj.halfChecked) {
+	      halfCheckedKeys.push(itemObj.key);
+	    }
+	  });
+	  return {
+	    halfCheckedKeys: halfCheckedKeys, checkedKeys: checkedKeys, checkedNodes: checkedNodes, checkedNodesPositions: checkedNodesPositions, treeNodesStates: treeNodesStates
+	  };
+	}
+	
+	function getStrictlyValue(checkedKeys, halfChecked) {
+	  if (halfChecked) {
+	    return { checked: checkedKeys, halfChecked: halfChecked };
+	  }
+	  return checkedKeys;
+	}
+	
+	function arraysEqual(a, b) {
+	  if (a === b) return true;
+	  if (a === null || typeof a === 'undefined' || b === null || typeof b === 'undefined') {
+	    return false;
+	  }
+	  if (a.length !== b.length) return false;
+	
+	  // If you don't care about the order of the elements inside
+	  // the array, you should sort both arrays here.
+	
+	  for (var i = 0; i < a.length; ++i) {
+	    if (a[i] !== b[i]) return false;
+	  }
+	  return true;
+	}
 
 /***/ }),
-/* 294 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4774,103 +4667,458 @@ webpackJsonp([2],[
 	  value: true
 	});
 	
-	var _extends2 = __webpack_require__(263);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _extends3 = _interopRequireDefault(_extends2);
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
-	exports['default'] = getContainerRenderMixin;
+	var _react = __webpack_require__(2);
 	
-	var _reactDom = __webpack_require__(38);
+	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _objectAssign = __webpack_require__(5);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	var _objectAssign2 = _interopRequireDefault(_objectAssign);
 	
-	function defaultGetContainer() {
-	  var container = document.createElement('div');
-	  document.body.appendChild(container);
-	  return container;
-	}
+	var _classnames = __webpack_require__(332);
 	
-	function getContainerRenderMixin(config) {
-	  var _config$autoMount = config.autoMount,
-	      autoMount = _config$autoMount === undefined ? true : _config$autoMount,
-	      _config$autoDestroy = config.autoDestroy,
-	      autoDestroy = _config$autoDestroy === undefined ? true : _config$autoDestroy,
-	      isVisible = config.isVisible,
-	      getComponent = config.getComponent,
-	      _config$getContainer = config.getContainer,
-	      getContainer = _config$getContainer === undefined ? defaultGetContainer : _config$getContainer;
+	var _classnames2 = _interopRequireDefault(_classnames);
 	
+	var _rcAnimate = __webpack_require__(285);
 	
-	  var mixin = void 0;
+	var _rcAnimate2 = _interopRequireDefault(_rcAnimate);
 	
-	  function _renderComponent(instance, componentArg, ready) {
-	    if (!isVisible || instance._component || isVisible(instance)) {
-	      if (!instance._container) {
-	        instance._container = getContainer(instance);
-	      }
-	      var component = void 0;
-	      if (instance.getComponent) {
-	        component = instance.getComponent(componentArg);
-	      } else {
-	        component = getComponent(instance, componentArg);
-	      }
-	      _reactDom2['default'].unstable_renderSubtreeIntoContainer(instance, component, instance._container, function callback() {
-	        instance._component = this;
-	        if (ready) {
-	          ready.call(this);
+	var _util = __webpack_require__(333);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+	
+	var browserUa = typeof window !== 'undefined' ? (0, _util.browser)(window.navigator) : '';
+	var ieOrEdge = /.*(IE|Edge).+/.test(browserUa);
+	// const uaArray = browserUa.split(' ');
+	// const gtIE8 = uaArray.length !== 2 || uaArray[0].indexOf('IE') === -1 || Number(uaArray[1]) > 8;
+	
+	var defaultTitle = '---';
+	
+	var TreeNode = function (_React$Component) {
+	  _inherits(TreeNode, _React$Component);
+	
+	  function TreeNode(props) {
+	    _classCallCheck(this, TreeNode);
+	
+	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+	
+	    ['onExpand', 'onCheck', 'onContextMenu', 'onMouseEnter', 'onMouseLeave', 'onDragStart', 'onDragEnter', 'onDragOver', 'onDragLeave', 'onDrop', 'onDragEnd'].forEach(function (m) {
+	      _this[m] = _this[m].bind(_this);
+	    });
+	    _this.state = {
+	      dataLoading: false,
+	      dragNodeHighlight: false
+	    };
+	    return _this;
+	  }
+	
+	  TreeNode.prototype._getLeftShiftStyle = function _getLeftShiftStyle() {
+	    var _props = this.props,
+	        shift = _props.leftShift,
+	        level = _props.level,
+	        _props$leftShiftProp = _props.leftShiftProp,
+	        leftShiftProp = _props$leftShiftProp === undefined ? 'margin' : _props$leftShiftProp;
+	
+	    var shiftValue = 0;
+	
+	    if (shift) {
+	      if (!Array.isArray(shift)) shiftValue = shift * level;else {
+	        var defaultShift = shift[0];
+	        for (var i = 1; i <= level; i++) {
+	          shiftValue += shift[i] || defaultShift;
 	        }
+	      }
+	    }
+	
+	    return _defineProperty({}, leftShiftProp + 'Left', shiftValue);
+	  };
+	
+	  TreeNode.prototype.componentDidMount = function componentDidMount() {
+	    if (!this.props.root._treeNodeInstances) {
+	      this.props.root._treeNodeInstances = [];
+	    }
+	    this.props.root._treeNodeInstances.push(this);
+	  };
+	  // shouldComponentUpdate(nextProps) {
+	  //   if (!nextProps.expanded) {
+	  //     return false;
+	  //   }
+	  //   return true;
+	  // }
+	
+	  TreeNode.prototype.onCheck = function onCheck() {
+	    this.props.root.onCheck(this);
+	  };
+	
+	  TreeNode.prototype.onSelect = function onSelect() {
+	    this.props.root.onSelect(this);
+	  };
+	
+	  TreeNode.prototype.onMouseEnter = function onMouseEnter(e) {
+	    e.preventDefault();
+	    this.props.root.onMouseEnter(e, this);
+	  };
+	
+	  TreeNode.prototype.onMouseLeave = function onMouseLeave(e) {
+	    e.preventDefault();
+	    this.props.root.onMouseLeave(e, this);
+	  };
+	
+	  TreeNode.prototype.onContextMenu = function onContextMenu(e) {
+	    e.preventDefault();
+	    this.props.root.onContextMenu(e, this);
+	  };
+	
+	  TreeNode.prototype.onDragStart = function onDragStart(e) {
+	    // console.log('dragstart', this.props.eventKey, e);
+	    // e.preventDefault();
+	    e.stopPropagation();
+	    this.setState({
+	      dragNodeHighlight: true
+	    });
+	    this.props.root.onDragStart(e, this);
+	    try {
+	      // ie throw error
+	      // firefox-need-it
+	      e.dataTransfer.setData('text/plain', '');
+	    } finally {
+	      // empty
+	    }
+	  };
+	
+	  TreeNode.prototype.onDragEnter = function onDragEnter(e) {
+	    // console.log('onDragEnter', this.props.eventKey);
+	    e.preventDefault();
+	    e.stopPropagation();
+	    this.props.root.onDragEnter(e, this);
+	  };
+	
+	  TreeNode.prototype.onDragOver = function onDragOver(e) {
+	    // console.log('onDragOver', this.props.eventKey);
+	    // todo disabled
+	    e.preventDefault();
+	    e.stopPropagation();
+	    this.props.root.onDragOver(e, this);
+	    return false;
+	  };
+	
+	  TreeNode.prototype.onDragLeave = function onDragLeave(e) {
+	    // console.log('onDragLeave', this.props.eventKey);
+	    e.stopPropagation();
+	    this.props.root.onDragLeave(e, this);
+	  };
+	
+	  TreeNode.prototype.onDrop = function onDrop(e) {
+	    // console.log('onDrop', this.props.eventKey);
+	    e.preventDefault();
+	    e.stopPropagation();
+	    this.setState({
+	      dragNodeHighlight: false
+	    });
+	    this.props.root.onDrop(e, this);
+	  };
+	
+	  TreeNode.prototype.onDragEnd = function onDragEnd(e) {
+	    // console.log('onDragEnd', this.props.eventKey);
+	    e.stopPropagation();
+	    this.setState({
+	      dragNodeHighlight: false
+	    });
+	    this.props.root.onDragEnd(e, this);
+	  };
+	
+	  TreeNode.prototype.onExpand = function onExpand() {
+	    var _this2 = this;
+	
+	    var callbackPromise = this.props.root.onExpand(this);
+	    if (callbackPromise && (typeof callbackPromise === 'undefined' ? 'undefined' : _typeof(callbackPromise)) === 'object') {
+	      var setLoading = function setLoading(dataLoading) {
+	        _this2.setState({ dataLoading: dataLoading });
+	      };
+	      setLoading(true);
+	      callbackPromise.then(function () {
+	        setLoading(false);
+	      }, function () {
+	        setLoading(false);
 	      });
 	    }
-	  }
+	  };
 	
-	  if (autoMount) {
-	    mixin = (0, _extends3['default'])({}, mixin, {
-	      componentDidMount: function componentDidMount() {
-	        _renderComponent(this);
-	      },
-	      componentDidUpdate: function componentDidUpdate() {
-	        _renderComponent(this);
-	      }
-	    });
-	  }
+	  // keyboard event support
 	
-	  if (!autoMount || !autoDestroy) {
-	    mixin = (0, _extends3['default'])({}, mixin, {
-	      renderComponent: function renderComponent(componentArg, ready) {
-	        _renderComponent(this, componentArg, ready);
-	      }
-	    });
-	  }
 	
-	  function _removeContainer(instance) {
-	    if (instance._container) {
-	      var container = instance._container;
-	      _reactDom2['default'].unmountComponentAtNode(container);
-	      container.parentNode.removeChild(container);
-	      instance._container = null;
+	  TreeNode.prototype.onKeyDown = function onKeyDown(e) {
+	    e.preventDefault();
+	  };
+	
+	  TreeNode.prototype.renderSwitcher = function renderSwitcher(props, expandedState) {
+	    var prefixCls = props.prefixCls;
+	    var switcherCls = _defineProperty({}, prefixCls + '-switcher', true);
+	    if (!props.showLine) {
+	      switcherCls[prefixCls + '-noline_' + expandedState] = true;
+	    } else if (props.pos === '0-0') {
+	      switcherCls[prefixCls + '-roots_' + expandedState] = true;
+	    } else {
+	      switcherCls[prefixCls + '-center_' + expandedState] = !props.last;
+	      switcherCls[prefixCls + '-bottom_' + expandedState] = props.last;
 	    }
-	  }
+	    if (props.disabled) {
+	      switcherCls[prefixCls + '-switcher-disabled'] = true;
+	      return _react2.default.createElement('span', { className: (0, _classnames2.default)(switcherCls) });
+	    }
+	    return _react2.default.createElement('span', { className: (0, _classnames2.default)(switcherCls), onClick: this.onExpand });
+	  };
 	
-	  if (autoDestroy) {
-	    mixin = (0, _extends3['default'])({}, mixin, {
-	      componentWillUnmount: function componentWillUnmount() {
-	        _removeContainer(this);
-	      }
-	    });
-	  } else {
-	    mixin = (0, _extends3['default'])({}, mixin, {
-	      removeContainer: function removeContainer() {
-	        _removeContainer(this);
-	      }
-	    });
-	  }
+	  TreeNode.prototype.renderCheckbox = function renderCheckbox(props) {
+	    var prefixCls = props.prefixCls;
+	    var checkboxCls = _defineProperty({}, prefixCls + '-checkbox', true);
+	    if (props.checked) {
+	      checkboxCls[prefixCls + '-checkbox-checked'] = true;
+	    } else if (props.halfChecked) {
+	      checkboxCls[prefixCls + '-checkbox-indeterminate'] = true;
+	    }
+	    var customEle = null;
+	    if (typeof props.checkable !== 'boolean') {
+	      customEle = props.checkable;
+	    }
+	    if (props.disabled || props.disableCheckbox) {
+	      checkboxCls[prefixCls + '-checkbox-disabled'] = true;
+	      return _react2.default.createElement(
+	        'span',
+	        { ref: 'checkbox', className: (0, _classnames2.default)(checkboxCls) },
+	        customEle
+	      );
+	    }
+	    return _react2.default.createElement(
+	      'span',
+	      { ref: 'checkbox',
+	        className: (0, _classnames2.default)(checkboxCls),
+	        onClick: this.onCheck
+	      },
+	      customEle
+	    );
+	  };
 	
-	  return mixin;
-	}
+	  TreeNode.prototype.renderChildren = function renderChildren(props) {
+	    var renderFirst = this.renderFirst;
+	    this.renderFirst = 1;
+	    var transitionAppear = true;
+	    if (!renderFirst && props.expanded) {
+	      transitionAppear = false;
+	    }
+	    var children = props.children;
+	    var newChildren = children;
+	    if (children && (children.type === TreeNode || Array.isArray(children) && children.every(function (item) {
+	      return item.type === TreeNode;
+	    }))) {
+	      var _cls;
+	
+	      var cls = (_cls = {}, _defineProperty(_cls, props.prefixCls + '-child-tree', true), _defineProperty(_cls, props.prefixCls + '-child-tree-open', props.expanded), _cls);
+	      if (props.showLine) {
+	        cls[props.prefixCls + '-line'] = !props.last;
+	      }
+	      var animProps = {};
+	      if (props.openTransitionName) {
+	        animProps.transitionName = props.openTransitionName;
+	      } else if (_typeof(props.openAnimation) === 'object') {
+	        animProps.animation = (0, _objectAssign2.default)({}, props.openAnimation);
+	        if (!transitionAppear) {
+	          delete animProps.animation.appear;
+	        }
+	      }
+	      newChildren = _react2.default.createElement(
+	        _rcAnimate2.default,
+	        _extends({}, animProps, {
+	          showProp: 'data-expanded',
+	          transitionAppear: transitionAppear,
+	          component: ''
+	        }),
+	        !props.expanded ? null : _react2.default.createElement(
+	          'ul',
+	          { className: (0, _classnames2.default)(cls), 'data-expanded': props.expanded },
+	          _react2.default.Children.map(children, function (item, index) {
+	            return props.root.renderTreeNode(item, index, props.pos);
+	          }, props.root)
+	        )
+	      );
+	    }
+	    return newChildren;
+	  };
+	
+	  TreeNode.prototype.render = function render() {
+	    var _iconEleCls,
+	        _this3 = this;
+	
+	    var props = this.props;
+	    var prefixCls = props.prefixCls;
+	    var expandedState = props.expanded ? 'open' : 'close';
+	
+	    var iconEleCls = (_iconEleCls = {}, _defineProperty(_iconEleCls, prefixCls + '-iconEle', true), _defineProperty(_iconEleCls, prefixCls + '-icon_loading', this.state.dataLoading), _defineProperty(_iconEleCls, prefixCls + '-icon__' + expandedState, true), _iconEleCls);
+	
+	    var canRenderSwitcher = true;
+	    var content = props.title;
+	    var newChildren = this.renderChildren(props);
+	    if (!newChildren || newChildren === props.children) {
+	      // content = newChildren;
+	      newChildren = null;
+	      if (!props.loadData || props.isLeaf) {
+	        canRenderSwitcher = false;
+	      }
+	    }
+	    // For performance, does't render children into dom when `!props.expanded` (move to Animate)
+	    // if (!props.expanded) {
+	    //   newChildren = null;
+	    // }
+	
+	    var selectHandle = function selectHandle() {
+	      var icon = props.showIcon || props.loadData && _this3.state.dataLoading ? _react2.default.createElement('span', { className: (0, _classnames2.default)(iconEleCls) }) : null;
+	      var title = _react2.default.createElement(
+	        'span',
+	        { className: prefixCls + '-title' },
+	        content
+	      );
+	      var domProps = {
+	        className: prefixCls + '-node-content-wrapper'
+	      };
+	      if (!props.disabled) {
+	        if (props.selected || !props._dropTrigger && _this3.state.dragNodeHighlight) {
+	          domProps.className += ' ' + prefixCls + '-node-selected';
+	        }
+	        domProps.onClick = function (e) {
+	          e.preventDefault();
+	          if (props.selectable) {
+	            _this3.onSelect();
+	          }
+	          // not fire check event
+	          // if (props.checkable) {
+	          //   this.onCheck();
+	          // }
+	        };
+	        if (props.onRightClick) {
+	          domProps.onContextMenu = _this3.onContextMenu;
+	        }
+	        if (props.onMouseEnter) {
+	          domProps.onMouseEnter = _this3.onMouseEnter;
+	        }
+	        if (props.onMouseLeave) {
+	          domProps.onMouseLeave = _this3.onMouseLeave;
+	        }
+	        if (props.draggable) {
+	          domProps.className += ' draggable';
+	          if (ieOrEdge) {
+	            // ie bug!
+	            domProps.href = '#';
+	          }
+	          domProps.draggable = true;
+	          domProps['aria-grabbed'] = true;
+	          domProps.onDragStart = _this3.onDragStart;
+	        }
+	      }
+	      return _react2.default.createElement(
+	        'a',
+	        _extends({ ref: 'selectHandle', title: typeof content === 'string' ? content : '' }, domProps),
+	        icon,
+	        title
+	      );
+	    };
+	
+	    var liProps = {};
+	    if (props.draggable) {
+	      liProps.onDragEnter = this.onDragEnter;
+	      liProps.onDragOver = this.onDragOver;
+	      liProps.onDragLeave = this.onDragLeave;
+	      liProps.onDrop = this.onDrop;
+	      liProps.onDragEnd = this.onDragEnd;
+	    }
+	
+	    var disabledCls = '';
+	    var dragOverCls = '';
+	    if (props.disabled) {
+	      disabledCls = prefixCls + '-treenode-disabled';
+	    } else if (props.dragOver) {
+	      dragOverCls = 'drag-over';
+	    } else if (props.dragOverGapTop) {
+	      dragOverCls = 'drag-over-gap-top';
+	    } else if (props.dragOverGapBottom) {
+	      dragOverCls = 'drag-over-gap-bottom';
+	    }
+	
+	    var filterCls = props.filterTreeNode(this) ? 'filter-node' : '';
+	
+	    var noopSwitcher = function noopSwitcher() {
+	      var _cls2;
+	
+	      var cls = (_cls2 = {}, _defineProperty(_cls2, prefixCls + '-switcher', true), _defineProperty(_cls2, prefixCls + '-switcher-noop', true), _cls2);
+	      if (props.showLine) {
+	        cls[prefixCls + '-center_docu'] = !props.last;
+	        cls[prefixCls + '-bottom_docu'] = props.last;
+	      } else {
+	        cls[prefixCls + '-noline_docu'] = true;
+	      }
+	      return _react2.default.createElement('span', { className: (0, _classnames2.default)(cls) });
+	    };
+	
+	    return _react2.default.createElement(
+	      'li',
+	      _extends({}, liProps, { ref: 'li',
+	        className: (0, _classnames2.default)(props.className, disabledCls, dragOverCls, filterCls)
+	      }),
+	      props.selectionTag ? _react2.default.createElement(props.selectionTag, null) : null,
+	      _react2.default.createElement(
+	        'div',
+	        {
+	          className: (0, _classnames2.default)('rc-tree-item-wrap', _defineProperty({}, 'rc-tree-item-wrap-selected', props.selected)),
+	          style: this._getLeftShiftStyle()
+	        },
+	        props.separator ? _react2.default.createElement(props.separator, null) : null,
+	        canRenderSwitcher ? this.renderSwitcher(props, expandedState) : noopSwitcher(),
+	        props.checkable ? this.renderCheckbox(props) : null,
+	        selectHandle()
+	      ),
+	      newChildren
+	    );
+	  };
+	
+	  return TreeNode;
+	}(_react2.default.Component);
+	
+	TreeNode.isTreeNode = 1;
+	
+	TreeNode.propTypes = {
+	  prefixCls: _react.PropTypes.string,
+	  disabled: _react.PropTypes.bool,
+	  disableCheckbox: _react.PropTypes.bool,
+	  expanded: _react.PropTypes.bool,
+	  isLeaf: _react.PropTypes.bool,
+	  root: _react.PropTypes.object,
+	  onSelect: _react.PropTypes.func,
+	  leftShift: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.arrayOf(_react.PropTypes.number)]),
+	  level: _react.PropTypes.number,
+	  leftShiftProp: _react.PropTypes.string,
+	  separator: _react.PropTypes.element
+	};
+	
+	TreeNode.defaultProps = {
+	  title: defaultTitle
+	};
+	
+	exports.default = TreeNode;
 	module.exports = exports['default'];
 
 /***/ })
 ]);
-//# sourceMappingURL=basic-controlled.js.map
+//# sourceMappingURL=draggable-analysis.js.map

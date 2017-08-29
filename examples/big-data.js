@@ -1,15 +1,15 @@
 webpackJsonp([3],{
 
 /***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(193);
+	module.exports = __webpack_require__(295);
 
 
-/***/ },
+/***/ }),
 
-/***/ 180:
-/***/ function(module, exports) {
+/***/ 260:
+/***/ (function(module, exports) {
 
 	'use strict';
 	
@@ -217,10 +217,10 @@ webpackJsonp([3],{
 	  return res;
 	}
 
-/***/ },
+/***/ }),
 
-/***/ 193:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 295:
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -230,7 +230,7 @@ webpackJsonp([3],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(35);
+	var _reactDom = __webpack_require__(38);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
@@ -238,7 +238,7 @@ webpackJsonp([3],{
 	
 	var _rcTree2 = _interopRequireDefault(_rcTree);
 	
-	var _bigDataGenerator = __webpack_require__(194);
+	var _bigDataGenerator = __webpack_require__(296);
 	
 	var _bigDataGenerator2 = _interopRequireDefault(_bigDataGenerator);
 	
@@ -277,7 +277,7 @@ webpackJsonp([3],{
 	      checkedKeys: checkedKeys
 	    });
 	  },
-	  onCheckStrictly: function onCheckStrictly(checkedKeys1) /* extra*/{
+	  onCheckStrictly: function onCheckStrictly(checkedKeys1) {
 	    console.log(arguments);
 	    this.setState({
 	      checkedKeys1: checkedKeys1
@@ -387,10 +387,10 @@ webpackJsonp([3],{
 	
 	_reactDom2.default.render(_react2.default.createElement(Demo, null), document.getElementById('__react-content'));
 
-/***/ },
+/***/ }),
 
-/***/ 194:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 296:
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -402,7 +402,7 @@ webpackJsonp([3],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _util = __webpack_require__(180);
+	var _util = __webpack_require__(260);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -505,7 +505,7 @@ webpackJsonp([3],{
 	exports.default = Gen;
 	module.exports = exports['default'];
 
-/***/ }
+/***/ })
 
 });
 //# sourceMappingURL=big-data.js.map
