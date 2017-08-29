@@ -405,7 +405,7 @@ TreeNode.propTypes = {
   ]),
   level: PropTypes.number,
   leftShiftProp: PropTypes.string,
-  separator: PropTypes.element,
+  separator: PropTypes.func,
 };
 
 TreeNode.defaultProps = {
