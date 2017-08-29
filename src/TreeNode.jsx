@@ -378,6 +378,7 @@ class TreeNode extends React.Component {
             className={classNames('rc-tree-item-wrap', {['rc-tree-item-wrap-selected']: props.selected})}
             style={this._getLeftShiftStyle()}
         >
+          {props.separator ? <props.separator /> : null}
           {canRenderSwitcher ? this.renderSwitcher(props, expandedState) : noopSwitcher()}
           {props.checkable ? this.renderCheckbox(props) : null}
           {selectHandle()}
@@ -404,6 +405,7 @@ TreeNode.propTypes = {
   ]),
   level: PropTypes.number,
   leftShiftProp: PropTypes.string,
+  separator: PropTypes.element,
 };
 
 TreeNode.defaultProps = {
