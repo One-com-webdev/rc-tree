@@ -5038,7 +5038,7 @@ webpackJsonp([6],[
 	
 	    var liProps = {};
 	    if (props.draggable) {
-	      liProps.onDragEnter = this.onDragEnter;
+	      // liProps.onDragEnter = this.onDragEnter;
 	      liProps.onDragOver = this.onDragOver;
 	      liProps.onDragLeave = this.onDragLeave;
 	      liProps.onDrop = this.onDrop;
@@ -5072,6 +5072,12 @@ webpackJsonp([6],[
 	      return _react2.default.createElement('span', { className: (0, _classnames2.default)(cls) });
 	    };
 	
+	    // attach onDragEnter to item wrap to eliminate incorrect hover over parent <li>
+	    var itemWrapProps = {};
+	    if (props.draggable) {
+	      itemWrapProps.onDragEnter = this.onDragEnter;
+	    }
+	
 	    return _react2.default.createElement(
 	      'li',
 	      _extends({}, liProps, { ref: 'li',
@@ -5080,10 +5086,10 @@ webpackJsonp([6],[
 	      props.selectionTag ? _react2.default.createElement(props.selectionTag, null) : null,
 	      _react2.default.createElement(
 	        'div',
-	        {
+	        _extends({
 	          className: (0, _classnames2.default)('rc-tree-item-wrap', _defineProperty({}, 'rc-tree-item-wrap-selected', props.selected)),
 	          style: this._getLeftShiftStyle()
-	        },
+	        }, itemWrapProps),
 	        props.separator ? _react2.default.createElement(props.separator, null) : null,
 	        canRenderSwitcher ? this.renderSwitcher(props, expandedState) : noopSwitcher(),
 	        props.checkable ? this.renderCheckbox(props) : null,
