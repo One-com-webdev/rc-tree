@@ -334,7 +334,7 @@ class TreeNode extends React.Component {
 
     const liProps = {};
     if (props.draggable) {
-      liProps.onDragEnter = this.onDragEnter;
+      // liProps.onDragEnter = this.onDragEnter;
       liProps.onDragOver = this.onDragOver;
       liProps.onDragLeave = this.onDragLeave;
       liProps.onDrop = this.onDrop;
@@ -369,6 +369,12 @@ class TreeNode extends React.Component {
       return <span className={classNames(cls)}></span>;
     };
 
+    // attach onDragEnter to item wrap to eliminate incorrect hover over parent <li>
+    const itemWrapProps = {};
+    if (props.draggable) {
+      itemWrapProps.onDragEnter = this.onDragEnter;
+    }
+
     return (
       <li {...liProps} ref="li"
         className={classNames(props.className, disabledCls, dragOverCls, filterCls) }
@@ -377,6 +383,7 @@ class TreeNode extends React.Component {
         <div
             className={classNames('rc-tree-item-wrap', {['rc-tree-item-wrap-selected']: props.selected})}
             style={this._getLeftShiftStyle()}
+            {...itemWrapProps}
         >
           {props.separator ? <props.separator /> : null}
           {canRenderSwitcher ? this.renderSwitcher(props, expandedState) : noopSwitcher()}
