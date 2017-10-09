@@ -49,13 +49,14 @@
     "rc-tools": "^5.3.4",
     "rc-tooltip": "3.x",
     "rc-trigger": "^1.0.6",
-    "react": "^15.2.0",
-    "react-addons-test-utils": "^15.2.0",
-    "react-dom": "^15.2.0"
+    "react": "^16.0.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.0.0"
   },
   "dependencies": {
     "classnames": "2.x",
     "object-assign": "4.x",
+    "prop-types": "^15.6.0",
     "rc-animate": "2.x"
   },
   "pre-commit": [
