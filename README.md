@@ -115,7 +115,6 @@ npm install
 npm start
 ```
 ### Compile and publish
-- `npm run build`: builds examples pages
 - `npm run compile`: compiles actual tree `lib`
 - `npm version <new-version> && npm run pub`: pumps version patch and publishes to npm
 
