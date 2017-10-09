@@ -116,8 +116,8 @@ npm start
 ```
 ### Compile and publish
 - `npm run build`: builds examples pages
-- `node_modules/.bin/rc-tools run compile`: compiles actual tree `lib`
-- `npm version patch && npm run pub`: pumps version patch and publishes to npm
+- `npm run compile`: compiles actual tree `lib`
+- `npm version <new-version> && npm run pub`: pumps version patch and publishes to npm
 
 To test changes from `wbtgen` project:
 1. git clone this repo onto your localhost
