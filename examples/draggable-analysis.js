@@ -3958,7 +3958,7 @@ webpackJsonp([6],[
 	
 	    return _react2.default.createElement(
 	      'ul',
-	      _extends({}, domProps, { unselectable: true, ref: 'tree' }),
+	      _extends({}, domProps, { unselectable: 'on', ref: 'tree' }),
 	      _react2.default.Children.map(props.children, this.renderTreeNode, this)
 	    );
 	  };
