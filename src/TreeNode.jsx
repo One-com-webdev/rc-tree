@@ -346,11 +346,11 @@ class TreeNode extends React.Component {
     let dragOverCls = '';
     if (props.disabled) {
       disabledCls = `${prefixCls}-treenode-disabled`;
-    } else if (props.dragOver) {
+    } else if (!props.disableDragHovers && props.dragOver) {
       dragOverCls = 'drag-over';
-    } else if (props.dragOverGapTop) {
+    } else if (!props.disableDragHovers && props.dragOverGapTop) {
       dragOverCls = 'drag-over-gap-top';
-    } else if (props.dragOverGapBottom) {
+    } else if (!props.disableDragHovers && props.dragOverGapBottom) {
       dragOverCls = 'drag-over-gap-bottom';
     }
 
@@ -414,6 +414,7 @@ TreeNode.propTypes = {
   level: PropTypes.number,
   leftShiftProp: PropTypes.string,
   separator: PropTypes.func,
+  disableDragHovers: PropTypes.bool,
 };
 
 TreeNode.defaultProps = {

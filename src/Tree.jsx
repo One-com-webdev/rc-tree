@@ -110,6 +110,7 @@ class Tree extends React.Component {
       event: e,
       node: treeNode,
       expandedKeys: expandedKeys && [...expandedKeys] || [...this.state.expandedKeys],
+      enterGap,
     });
   }
 
