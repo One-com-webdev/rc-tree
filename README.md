@@ -117,6 +117,7 @@ npm start
 ### Compile and publish
 - `npm run compile`: compiles actual tree `lib`
 - `npm version <new-version> && npm run pub`: pumps version patch and publishes to npm
+- `git push && git push --tags`
 
 To test changes from `wbtgen` project:
 1. git clone this repo onto your localhost
