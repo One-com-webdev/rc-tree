@@ -5467,13 +5467,13 @@ webpackJsonp([6],[
 	      _extends({}, liProps, { ref: 'li',
 	        className: (0, _classnames2.default)(props.className, disabledCls, dragOverCls, filterCls)
 	      }),
-	      props.selectionTag ? _react2.default.createElement(props.selectionTag, null) : null,
 	      _react2.default.createElement(
 	        'div',
 	        _extends({
 	          className: (0, _classnames2.default)('rc-tree-item-wrap', _defineProperty({}, 'rc-tree-item-wrap-selected', props.selected)),
 	          style: this._getLeftShiftStyle()
 	        }, itemWrapProps),
+	        props.selectionTag ? _react2.default.createElement(props.selectionTag, null) : null,
 	        props.separator ? _react2.default.createElement(props.separator, null) : null,
 	        canRenderSwitcher ? this.renderSwitcher(props, expandedState) : noopSwitcher(),
 	        props.checkable ? this.renderCheckbox(props) : null,
