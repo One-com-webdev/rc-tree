@@ -1,0 +1,10 @@
+assets
+examples
+src
+tests
+.editorconfig
+.eslintrc
+.gitignore
+.travis.yml
+index.js
+package-lock.json

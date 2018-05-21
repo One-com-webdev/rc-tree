@@ -24,3 +24,5 @@ dist
 *.css
 build
 lib
+rc-tree-one.com-*.tgz
+package
