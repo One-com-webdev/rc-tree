@@ -380,12 +380,12 @@ class TreeNode extends React.Component {
       <li {...liProps} ref="li"
         className={classNames(props.className, disabledCls, dragOverCls, filterCls) }
       >
-        {props.selectionTag ? <props.selectionTag /> : null}
         <div
             className={classNames('rc-tree-item-wrap', {['rc-tree-item-wrap-selected']: props.selected})}
             style={this._getLeftShiftStyle()}
             {...itemWrapProps}
         >
+          {props.selectionTag ? <props.selectionTag /> : null}
           {props.separator ? <props.separator /> : null}
           {canRenderSwitcher ? this.renderSwitcher(props, expandedState) : noopSwitcher()}
           {props.checkable ? this.renderCheckbox(props) : null}
